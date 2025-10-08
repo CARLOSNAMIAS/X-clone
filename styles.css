@@ -1,0 +1,419 @@
+/*
+ * Hoja de Estilos Principal para el Clon de Twitter
+ * Autor: Carlos Namias
+ * Descripción: Este archivo contiene todos los estilos necesarios para la interfaz
+ * de la aplicación, imitando la apariencia de Twitter (X).
+ * La estructura está dividida en secciones claras para facilitar el mantenimiento.
+ */
+
+/* -----------------------------------
+ * ESTILOS GLOBALES Y RESETEO
+ * ----------------------------------- */
+
+/*
+ * Reseteo universal para eliminar márgenes y paddings por defecto.
+ * `box-sizing: border-box` asegura que el padding y el borde se incluyan
+ * en el ancho y alto total del elemento, facilitando el layout.
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+ * Estilos base para el body:
+ * - `font-family`: Utiliza la fuente del sistema de Apple/San Francisco, un estándar moderno.
+ * - `background-color`: Tono oscuro principal de la interfaz.
+ * - `color`: Color de texto principal, un gris claro para buen contraste.
+ * - `overflow-x: hidden`: Previene el desbordamiento horizontal en la página.
+ */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #15202B;
+    color: #E7E9EA;
+    overflow-x: hidden;
+}
+
+
+/* ========================================
+   PANTALLA DE SPLASH (CARGA)
+   ======================================== */
+
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+/* Clase para ocultar el splash con una transición suave */
+.splash-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#splash-screen .logo {
+    width: 155px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Animación de entrada del logo */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* -----------------------------------
+ * ENCABEZADO FIJO (HEADER)
+ * ----------------------------------- */
+
+/*
+ * Contenedor principal del encabezado.
+ * - `position: fixed`: Fija el header en la parte superior de la ventana.
+ * - `background-color`: Ligeramente transparente para el efecto de desenfoque.
+ * - `backdrop-filter: blur(12px)`: Crea un efecto de "vidrio esmerilado" sobre el contenido que se desplaza debajo.
+ * - `z-index: 1000`: Asegura que el header esté por encima de otros elementos de la página.
+ */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 53px;
+    background-color: #15202Bee;
+    /* El `ee` final indica opacidad */
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-bottom: 1px solid #38444D;
+    z-index: 1000;
+}
+
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    cursor: pointer;
+}
+
+.x-logo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.settings-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* -----------------------------------
+ * PESTAÑAS DE NAVEGACIÓN (TABS)
+ * ----------------------------------- */
+
+/*
+ * Contenedor de las pestañas, también fijo debajo del header.
+ * - `top: 53px`: Lo posiciona justo debajo del header (que tiene 53px de alto).
+ * - `z-index: 999`: Ligeramente inferior al header para que el header se superponga si es necesario.
+ */
+.tabs {
+    position: fixed;
+    top: 53px;
+    left: 0;
+    right: 0;
+    height: 53px;
+    background-color: #15202Bee;
+    backdrop-filter: blur(12px);
+    display: flex;
+    border-bottom: 1px solid #38444D;
+    z-index: 999;
+}
+
+/*
+ * Estilo individual de cada pestaña.
+ * - `flex: 1`: Permite que las pestañas compartan el espacio disponible por igual.
+ */
+.tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #71767B;
+    /* Color para pestañas inactivas */
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.tab:hover {
+    background-color: #1C2732;
+    /* Feedback visual al pasar el mouse */
+}
+
+.tab.active {
+    color: #E7E9EA;
+    /* Color más brillante para la pestaña activa */
+    font-weight: 700;
+}
+
+/* Indicador visual (línea azul) para la pestaña activa */
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #1D9BF0;
+    border-radius: 2px 2px 0 0;
+}
+
+/* -----------------------------------
+ * FEED PRINCIPAL
+ * ----------------------------------- */
+
+/*
+ * Contenedor del feed de tweets.
+ * - `margin-top: 106px`: Empuja el contenido hacia abajo para que no quede oculto
+ *   por el header (53px) y las tabs (53px).
+ * - `padding-bottom: 70px`: Añade espacio al final para que el último tweet no sea
+ *   tapado por la barra de navegación inferior.
+ */
+.feed {
+    margin-top: 106px;
+    padding-bottom: 70px;
+}
+
+/* -----------------------------------
+ * ESTILOS DE CADA TWEET (ARTICLE)
+ * ----------------------------------- */
+
+.tweet {
+    border-bottom: 1px solid #38444D;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.tweet:hover {
+    background-color: #1C2732;
+}
+
+.tweet-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.tweet-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    overflow: hidden;
+    /* Esconde cualquier parte de la imagen que se salga del círculo */
+}
+
+.tweet-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Asegura que la imagen cubra el espacio sin distorsionarse */
+}
+
+.tweet-info {
+    flex: 1;
+    /* Ocupa el espacio restante */
+}
+
+.tweet-user {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 2px;
+}
+
+.tweet-name {
+    font-weight: 700;
+}
+
+.verified {
+    color: #1D9BF0;
+    /* Color azul característico de cuentas verificadas */
+    font-size: 18px;
+}
+
+.tweet-username,
+.tweet-time {
+    color: #71767B;
+}
+
+.tweet-menu {
+    color: #71767B;
+    cursor: pointer;
+}
+
+.tweet-content {
+    line-height: 1.4;
+    /* Mejora la legibilidad */
+    margin-bottom: 12px;
+}
+
+.tweet-image {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    border: 1px solid #38444D;
+}
+
+/* -----------------------------------
+ * BOTONES DE ACCIÓN DEL TWEET
+ * ----------------------------------- */
+
+.tweet-actions {
+    display: flex;
+    justify-content: space-between;
+    max-width: 425px;
+    margin-left: 52px;
+    /* 40px del avatar + 12px de margen */
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #71767B;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.action-btn i {
+    font-size: 18px;
+}
+
+/* Efecto hover para todos los botones de acción */
+.action-btn:hover {
+    color: #1D9BF0;
+}
+
+/* Estilo específico para el botón de "Me gusta" cuando está activado */
+.action-btn.liked {
+    color: #F91880;
+    /* Color rosa para "Me gusta" */
+}
+
+/* -----------------------------------
+ * NAVEGACIÓN INFERIOR (FOOTER)
+ * ----------------------------------- */
+
+/*
+ * Barra de navegación fija en la parte inferior.
+ * - `z-index: 1000`: Al igual que el header, debe estar por encima del contenido.
+ */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 53px;
+    background-color: #15202B;
+    border-top: 1px solid #38444D;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-item {
+    color: #E7E9EA;
+    cursor: pointer;
+    font-size: 26px;
+    position: relative;
+    /* Necesario para posicionar la insignia de notificación */
+}
+
+/* Insignia de notificación sobre el ícono de campana */
+.notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -6px;
+    background-color: #1D9BF0;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+/* -----------------------------------
+ * BOTÓN FLOTANTE (COMPOSE)
+ * ----------------------------------- */
+
+/*
+ * Botón para crear un nuevo tweet.
+ * - `position: fixed`: Lo mantiene en una posición fija en la pantalla.
+ * - `z-index: 999`: Se asegura de que esté por encima del feed pero potencialmente
+ *   debajo de modales u otros elementos con z-index más alto.
+ */
+.compose-btn {
+    position: fixed;
+    bottom: 70px;
+    /* Espacio para no superponerse a la navegación inferior */
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #1D9BF0;
+    color: white;
+    border: none;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.2s, transform 0.3s ease-out, opacity 0.3s ease-out;
+    z-index: 999;
+}
+
+.compose-btn.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none; /* Evita que se pueda hacer clic en el botón invisible */
+}
+
+.compose-btn:hover {
+    background-color: #1A8CD8;
+    /* Tono más oscuro para el efecto hover */
+}
+
+/* -----------------------------------
+ * ESTILOS ADICIONALES
+ * ----------------------------------- */
+
+/* Estilo para diferenciar los tweets que son anuncios */
+.tweet.ad {
+    background-color: #1A2732;
+}

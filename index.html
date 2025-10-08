@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#15202B" />
+    <meta name="description" content="Clon de Twitter" />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+
+
+    <title>Clon de Twitter</title>
+
+    <!-- Hojas de estilo -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+      <img src="img/x.jpg" alt="Logo x-logo" class="logo" />
+    </div>
+
+    <!-- Encabezado principal de la aplicación -->
+    <header class="header">
+      <div class="profile-pic"></div>
+      <div class="x-logo">𝕏</div>
+      <i class="bi bi-gear"></i>
+    </header>
+
+    <!-- Pestañas de navegación de contenido -->
+    <nav class="tabs">
+      <div class="tab active">Para ti</div>
+      <div class="tab">Siguiendo</div>
+      <div class="tab">Trabajo Remoto Latinoame...</div>
+    </nav>
+
+    <!-- Contenido principal (Feed de Tweets) -->
+    <main class="feed" id="feed">
+      <!-- El contenido de los tweets se generará dinámicamente aquí -->
+    </main>
+
+    <!-- Botón para componer un nuevo Tweet -->
+    <button class="compose-btn" aria-label="Componer nuevo tweet">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+
+    <!-- Navegación inferior principal -->
+    <footer class="bottom-nav">
+      <div class="nav-item active"><i class="bi bi-house-door-fill"></i></div>
+      <div class="nav-item"><i class="bi bi-search"></i></div>
+      <div class="nav-item"><i class="bi bi-compass"></i></div>
+      <div class="nav-item"><i class="bi bi-people"></i></div>
+      <div class="nav-item">
+        <i class="bi bi-bell"></i>
+        <span class="notification-badge">2</span>
+      </div>
+      <div class="nav-item"><i class="bi bi-envelope"></i></div>
+    </footer>
+
+    <!-- Script principal de la aplicación -->
+    <script src="script.js"></script>
+  </body>
+</html>
