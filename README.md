@@ -29,6 +29,6 @@ Desarrollado por [Carlos Namias]
 
 ## 📸 Vistas Previas
 
-| Pantalla  | Inicio | Descubrir |
+| Pantalla  | Inicio | Perfil |
 | :---: | :---: | :---: |
-| ![Pantalla Principal](img/splash-screen.png) | ![Inicio](img/inicio.png) | ![Descubrir](img/descubre.png) |
+| ![Pantalla Principal](img/splash-screen.png) | ![Inicio](img/inicio.png) | ![Perfil](img/perfil.png) |

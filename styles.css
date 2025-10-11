@@ -357,8 +357,8 @@ body {
 /* Insignia de notificación sobre el ícono de campana */
 .notification-badge {
     position: absolute;
-    top: -2px;
-    right: -6px;
+    top: 1px;
+    right: 12px;
     background-color: #1D9BF0;
     color: white;
     font-size: 11px;
@@ -505,7 +505,7 @@ body {
 .floating-container.open .action-btn:nth-child(3) .tooltip-text { transition-delay: 0s; }
 
 /* ----------------------------------- 
- * OVERLAY
+ * OVERLAY DE BOTÓN FLOTANTE NUEVO TWEET
  * ----------------------------------- */
 
 #overlay {

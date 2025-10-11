@@ -241,7 +241,32 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.toggle('active');
     });
 
-    overlay.addEventListener('click', closeMenu);
+    // --- LÓGICA DEL MENÚ LATERAL (OFF-CANVAS) ---
+    const sidebar = document.querySelector('.sidebar');
+    const profilePicTrigger = document.querySelector('.header .profile-pic');
+
+    const openSidebar = () => {
+        if (sidebar) sidebar.classList.add('show');
+        if (overlay) overlay.classList.add('active');
+    };
+
+    const closeSidebar = () => {
+        if (sidebar) sidebar.classList.remove('show');
+    };
+
+    if (profilePicTrigger) {
+        profilePicTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openSidebar();
+        });
+    }
+
+    // Listener unificado para el overlay
+    overlay.addEventListener('click', () => {
+        closeMenu(); // Cierra el menú del botón flotante
+        closeSidebar(); // Cierra el menú lateral
+        // La función closeMenu ya se encarga de ocultar el overlay
+    });
 
     /**
      * Placeholder para manejar las acciones de los botones (video, audio, imagen).
