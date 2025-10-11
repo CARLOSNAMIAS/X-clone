@@ -226,24 +226,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const composeBtn = document.querySelector('.compose-btn');
-    composeBtn.addEventListener('click', () => {
-        alert('Funcionalidad para componer un nuevo tweet no implementada.');
+    const composeBtn = document.getElementById('composeBtn');
+    const floatingContainer = document.querySelector('.floating-container');
+    const overlay = document.getElementById('overlay');
+
+    function closeMenu() {
+        floatingContainer.classList.remove('open');
+        overlay.classList.remove('active');
+    }
+
+    composeBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita que el clic se propague al overlay si estuviera activo
+        floatingContainer.classList.toggle('open');
+        overlay.classList.toggle('active');
     });
 
-    // --- LÓGICA PARA OCULTAR BOTÓN DE COMPONER EN SCROLL ---
+    overlay.addEventListener('click', closeMenu);
+
+    /**
+     * Placeholder para manejar las acciones de los botones (video, audio, imagen).
+     * @param {string} action - La acción a realizar.
+     */
+    window.handleAction = function(action) {
+        console.log(`Acción seleccionada: ${action}`);
+        closeMenu(); // Cierra el menú después de seleccionar una acción
+        // Aquí se podría implementar la lógica para cada botón
+        alert(`Funcionalidad para "${action}" no implementada.`);
+    }
+
+
+
+    // --- LÓGICA PARA OCULTAR BOTÓN FLOTANTE EN SCROLL ---
     let scrollTimeout;
     window.addEventListener('scroll', () => {
-        // Oculta el botón tan pronto como el usuario empieza a hacer scroll
-        composeBtn.classList.add('hidden');
+        // Cierra el menú si está abierto
+        floatingContainer.classList.remove('open');
+        // Oculta el contenedor
+        floatingContainer.classList.add('hidden');
 
-        // Limpia el timeout anterior para resetear el temporizador
+        // Limpia el timeout anterior
         clearTimeout(scrollTimeout);
 
-        // Configura un nuevo timeout para mostrar el botón después de que el scroll se detenga
+        // Muestra el contenedor después de que el scroll se detenga
         scrollTimeout = setTimeout(() => {
-            composeBtn.classList.remove('hidden');
-        }, 250); // El botón reaparece 250ms después de detener el scroll
+            floatingContainer.classList.remove('hidden');
+        }, 250); // 250ms de espera
     });
 
 

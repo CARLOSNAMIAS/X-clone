@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <!-- Metadatos básicos -->
@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#15202B" />
     <meta name="description" content="Clon de Twitter" />
-    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
-
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
 
     <title>Clon de Twitter</title>
 
@@ -26,7 +25,7 @@
 
     <!-- Encabezado principal de la aplicación -->
     <header class="header">
-      <div class="profile-pic"></div>
+      <img src="img/carlosjose.PNG" alt="Foto de perfil" class="profile-pic" />
       <div class="x-logo">𝕏</div>
       <i class="bi bi-gear"></i>
     </header>
@@ -44,9 +43,25 @@
     </main>
 
     <!-- Botón para componer un nuevo Tweet -->
-    <button class="compose-btn" aria-label="Componer nuevo tweet">
-      <i class="bi bi-plus-lg"></i>
-    </button>
+     <div class="floating-container">
+        <div class="action-buttons" id="actionButtons">
+            <button class="action-btn btn-video" onclick="handleAction('video')" aria-label="Grabar video">
+                <i class="bi bi-camera-video"></i>
+                <span class="tooltip-text">Transmitir en directo</span>
+            </button>
+            <button class="action-btn btn-audio" onclick="handleAction('audio')" aria-label="Grabar audio">
+                <i class="bi bi-mic-fill"></i>
+                <span class="tooltip-text">Espacio</span>
+            </button>
+            <button class="action-btn btn-image" onclick="handleAction('image')" aria-label="Subir imagen">
+                <i class="bi bi-image"></i>
+                <span class="tooltip-text">Fotos</span>
+            </button>
+        </div>
+        <button class="compose-btn" id="composeBtn" aria-label="Componer nuevo tweet">
+            <i class="bi bi-plus-lg"></i>
+        </button>
+    </div>
 
     <!-- Navegación inferior principal -->
     <footer class="bottom-nav">
@@ -61,11 +76,16 @@
       <div class="nav-item"><i class="bi bi-envelope"></i></div>
     </footer>
 
+    <!-- Overlay para el fondo oscuro -->
+    <div id="overlay"></div>
+
     <!-- Script principal de la aplicación -->
     <script src="script.js"></script>
 
     <!-- 100% privacy-first analytics -->
-<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-
+    <script
+      async
+      src="https://scripts.simpleanalyticscdn.com/latest.js"
+    ></script>
   </body>
 </html>
