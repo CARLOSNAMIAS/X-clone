@@ -21,68 +21,82 @@
   <body>
     <!-- Sidebar Menu -->
     <div class="sidebar">
-        <!-- Profile Header -->
-        <div class="profile-header">
-            <div class="header-top">
-                <div class="profile-avatar">
-                    <img src="img/carlosjose.PNG" alt="Foto de perfil" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="purple-badge"></div>
-                </div>
-                <div class="header-icons">
-                    <button class="icon-btn" aria-label="Más opciones" title="Más opciones">
-                        <i class="bi bi-three-dots-vertical"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="profile-name">Carlos Namias</div>
-            <div class="profile-username">@carlosnamias</div>
-            <div class="profile-stats">
-                <div class="stat">
-                    <span class="stat-number">100</span>
-                    <span class="stat-label">Siguiendo</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">3mil</span>
-                    <span class="stat-label">Seguidores</span>
-                </div>
-            </div>
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <div class="header-top">
+          <div class="profile-avatar">
+            <img
+              src="img/carlosjose.PNG"
+              alt="Foto de perfil"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+            <div class="purple-badge"></div>
+          </div>
+          <div class="header-icons">
+            <button
+              class="icon-btn"
+              aria-label="Más opciones"
+              title="Más opciones"
+            >
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+          </div>
         </div>
-
-        <!-- Menu Items -->
-        <div class="menu-section">
-            <button class="menu-item">
-                <div class="menu-icon"><i class="bi bi-person"></i></div>
-                <div class="menu-text">Perfil</div>
-            </button>
-            <button class="menu-item">
-                <div class="menu-icon"><span class="x-logo">𝕏</span></div>
-                <div class="menu-text">Premium</div>
-            </button>
-            <button class="menu-item">
-                <div class="menu-icon"><i class="bi bi-bookmark"></i></div>
-                <div class="menu-text">Elementos guardados</div>
-            </button>
-            <button class="menu-item">
-                <div class="menu-icon"><i class="bi bi-list-ul"></i></div>
-                <div class="menu-text">Listas</div>
-            </button>
-            <button class="menu-item">
-                <div class="menu-icon"><i class="bi bi-mic"></i></div>
-                <div class="menu-text">Espacios</div>
-            </button>
-            <button class="menu-item">
-                <div class="menu-icon"><i class="bi bi-cash-coin"></i></div>
-                <div class="menu-text">Monetización</div>
-            </button>
+        <div class="profile-name">Carlos Namias</div>
+        <div class="profile-username">@carlosnamias</div>
+        <div class="profile-stats">
+          <div class="stat">
+            <span class="stat-number">100</span>
+            <span class="stat-label">Siguiendo</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">3mil</span>
+            <span class="stat-label">Seguidores</span>
+          </div>
         </div>
+      </div>
 
-        <div class="separator"></div>
+      <!-- Menu Items -->
+      <div class="menu-section">
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-person"></i></div>
+          <div class="menu-text">Perfil</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><span class="x-logo">𝕏</span></div>
+          <div class="menu-text">Premium</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-bookmark"></i></div>
+          <div class="menu-text">Elementos guardados</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-list-ul"></i></div>
+          <div class="menu-text">Listas</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-mic"></i></div>
+          <div class="menu-text">Espacios</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-cash-coin"></i></div>
+          <div class="menu-text">Monetización</div>
+        </button>
+      </div>
 
-        <div class="menu-section">
-            <button class="menu-item"><div class="menu-text">Herramientas profesionales</div></button>
-            <button class="menu-item"><div class="menu-text">Configuración y privacidad</div></button>
-            <button class="menu-item"><div class="menu-text">Centro de ayuda</div></button>
-        </div>
+      <div class="separator"></div>
+
+      <div class="menu-section">
+        <button class="menu-item">
+          <div class="menu-text">Herramientas profesionales</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-text">Configuración y privacidad</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-text">Centro de ayuda</div>
+        </button>
+      </div>
     </div>
 
     <!-- Splash Screen -->
@@ -110,25 +124,42 @@
     </main>
 
     <!-- Botón para componer un nuevo Tweet -->
-     <div class="floating-container">
-        <div class="action-buttons" id="actionButtons">
-            <button class="action-btn btn-video" onclick="handleAction('video')" aria-label="Grabar video">
-                <i class="bi bi-camera-video"></i>
-                <span class="tooltip-text">Transmitir en directo</span>
-            </button>
-            <button class="action-btn btn-audio" onclick="handleAction('audio')" aria-label="Grabar audio">
-                <i class="bi bi-mic-fill"></i>
-                <span class="tooltip-text">Espacio</span>
-            </button>
-            <button class="action-btn btn-image" onclick="handleAction('image')" aria-label="Subir imagen">
-                <i class="bi bi-image"></i>
-                <span class="tooltip-text">Fotos</span>
-            </button>
-        </div>
-        <button class="compose-btn" id="composeBtn" aria-label="Componer nuevo tweet">
-            <i class="bi bi-plus-lg"></i>
-          
+    <div class="floating-container">
+      <div class="action-buttons" id="actionButtons">
+        <button
+          class="action-btn btn-video"
+          onclick="handleAction('video')"
+          aria-label="Grabar video"
+        >
+          <i class="bi bi-camera-reels-fill"></i>
+          <span class="tooltip-text">Transmitir en directo</span>
         </button>
+        <button
+          class="action-btn btn-audio"
+          onclick="handleAction('audio')"
+          aria-label="Grabar audio"
+        >
+          <i class="bi bi-mic-fill"></i>
+          <span class="tooltip-text">Espacio</span>
+        </button>
+        <button
+          class="action-btn btn-image"
+          onclick="handleAction('image')"
+          aria-label="Subir imagen"
+        >
+          <i class="bi bi-image"></i>
+          <span class="tooltip-text">Fotos</span>
+        </button>
+      </div>
+      <button
+        class="compose-btn"
+        id="composeBtn"
+        aria-label="Componer nuevo tweet"
+      >
+        <i class="bi bi-plus-lg"></i>
+        <i class="bi bi-feather"></i>
+        <span class="tooltip-text">Publicar</span>
+      </button>
     </div>
 
     <!-- Navegación inferior principal -->

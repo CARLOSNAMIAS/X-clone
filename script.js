@@ -281,21 +281,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // --- LÓGICA PARA OCULTAR BOTÓN FLOTANTE EN SCROLL ---
+    // --- LÓGICA PARA OCULTAR ELEMENTOS EN SCROLL ---
+    const header = document.querySelector('.header');
+    const tabsContainer = document.querySelector('.tabs'); // Se renombra para evitar conflicto con la variable 'tabs' existente
     let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        // Cierra el menú si está abierto
-        floatingContainer.classList.remove('open');
-        // Oculta el contenedor
-        floatingContainer.classList.add('hidden');
 
-        // Limpia el timeout anterior
+    window.addEventListener('scroll', () => {
+        // Ocultar elementos inmediatamente al hacer scroll
+        if (header) header.classList.add('is-hidden');
+        if (tabsContainer) tabsContainer.classList.add('is-hidden');
+        
+        floatingContainer.classList.add('hidden');
+        // Si el menú flotante está abierto, ciérralo también
+        if (floatingContainer.classList.contains('open')) {
+            floatingContainer.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        // Limpia el timeout anterior para reiniciar el temporizador
         clearTimeout(scrollTimeout);
 
-        // Muestra el contenedor después de que el scroll se detenga
+        // Muestra los elementos después de que el scroll se detenga
         scrollTimeout = setTimeout(() => {
+            if (header) header.classList.remove('is-hidden');
+            if (tabsContainer) tabsContainer.classList.remove('is-hidden');
             floatingContainer.classList.remove('hidden');
-        }, 250); // 250ms de espera
+        }, 300); // 300ms de espera para una sensación más suave
     });
 
 

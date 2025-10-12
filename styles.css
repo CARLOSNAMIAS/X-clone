@@ -102,8 +102,8 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    
     z-index: 1000;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .profile-pic {
@@ -144,6 +144,7 @@ body {
     display: flex;
     border-bottom: 1px solid #313a41;
     z-index: 999;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 /*
@@ -347,10 +348,11 @@ body {
 }
 
 .nav-item {
-    color: #E7E9EA;
+    color: #e3e2e2;
     cursor: pointer;
     font-size: 26px;
     position: relative;
+    
     /* Necesario para posicionar la insignia de notificación */
 }
 
@@ -407,7 +409,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
     transition: background-color 0.2s, transform 0.3s ease-out;
     z-index: 2; /* Asegura que esté sobre los botones de acción */
 }
@@ -416,13 +418,38 @@ body {
     background-color: #1A8CD8;
 }
 
-/* Rotación del ícono '+' a 'x' */
-.floating-container.open .compose-btn i {
-    transform: rotate(135deg);
-    transition: transform 0.3s ease-out;
+/* Animación de íconos del botón de componer */
+.compose-btn {
+    position: relative; /* Contenedor para posicionamiento absoluto de los íconos */
 }
+
 .compose-btn i {
-    transition: transform 0.3s ease-out;
+    position: absolute; /* Permite superponer los íconos */
+    top: 50%;
+    left: 50%;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Estado inicial: solo se ve el '+' */
+.compose-btn .bi-plus-lg {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.compose-btn .bi-feather {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+}
+
+/* Estado 'open': el '+' se hace pequeño y sube, la pluma aparece */
+.floating-container.open .compose-btn .bi-plus-lg {
+    transform: translate(calc(-50% + 10px), calc(-50% - 10px)) scale(0.5); /* Centra, luego mueve y encoge */
+    opacity: 0.7;
+}
+
+.floating-container.open .compose-btn .bi-feather {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
 }
 
 
@@ -446,7 +473,7 @@ body {
     justify-content: center;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.34);
     position: relative; /* Para el tooltip */
 
     /* Ocultos por defecto */
@@ -477,7 +504,7 @@ body {
 .action-btn .tooltip-text {
     visibility: hidden;
     width: max-content;
-    background-color: #27334000; /* Fondo más sutil */
+    background-color: none; /* Fondo más sutil */
     color: #E7E9EA;
     text-align: center;
     border-radius: 4px;
@@ -493,10 +520,13 @@ body {
     pointer-events: none; /* No interactuable */
 }
 
+
+
 /* Muestra el texto cuando el menú está abierto */
 .floating-container.open .action-btn .tooltip-text {
     opacity: 1;
     visibility: visible;
+    
 }
 
 /* Retraso en la aparición del texto para coincidir con el botón */
@@ -533,4 +563,38 @@ body {
 /* Estilo para diferenciar los tweets que son anuncios */
 .tweet.ad {
     background-color: #1A2732;
+}
+
+/* Tooltip para el botón principal de componer */
+.compose-btn .tooltip-text {
+    visibility: hidden;
+    width: max-content;
+    background-color: #273340;
+    color: #E7E9EA;
+    text-align: center;
+    border-radius: 4px;
+    padding: 4px 10px;
+    position: absolute;
+    z-index: 1;
+    right: 68px; /* A la izquierda del botón (56px de ancho + margen) */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+/* Muestra el tooltip cuando el menú está abierto */
+.floating-container.open .compose-btn .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.2s; /* Pequeño retraso para que aparezca después de la animación principal */
+}
+
+/* Clase para ocultar elementos en el scroll */
+.is-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
 }
