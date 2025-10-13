@@ -263,3 +263,36 @@
                 width: 15%;
             }
         }
+/* --- Estilos para el Interruptor de Tema --- */
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px 16px;
+    background-color: transparent;
+    border: none;
+    color: var(--primary-text-color);
+    font-size: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.theme-toggle-btn .menu-icon {
+    font-size: 24px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--primary-text-color);
+}
+
+.theme-toggle-btn .menu-text {
+    font-size: 20px;
+    font-weight: 400;
+    flex: 1;
+}

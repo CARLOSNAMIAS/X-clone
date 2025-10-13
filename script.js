@@ -120,6 +120,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         {
             user: "Carlos ",
+            username: "@userr",
+            time: "· 1h",
+            content: "La naturaleza nos regala paisajes impresionantes. 🌄🍃 #Aventura #Exploración",
+            image: "img/nature.jpg",
+            avatar: "https://i.pravatar.cc/22?u=carlos_13",
+            verified: false,
+            actions: {
+                comments: 45,
+                retweets: 10,
+                likes: 30,
+                views: "1.3K"
+            },
+            isLiked: true,
+            isAd: false // Marca este tweet como un anuncio
+        },
+
+
+        // Agrega más tweets aquí...
+         {
+            user: "Carlos ",
             username: "@carlos_13",
             time: "· 1h",
             content: "La pelicula de Star Wars es un clásico que nunca pasa de moda. ¡Que la fuerza te acompañe! 🌌✨ #StarWars #Cine",
@@ -134,7 +154,31 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             isLiked: false,
             isAd: false // Marca este tweet como un anuncio
+        },
+
+
+        // Agrega más tweets aquí...
+          {
+            user: "jose ",
+            username: "@jose_13",
+            time: "· 3h",
+            content: "Los barcos son una maravilla de la ingeniería y la aventura. Navegar por el océano es una experiencia única. #Viaje #Aventura",
+            image: "img/barcos.jpg",
+            avatar: "https://i.pravatar.cc/9?u=jose_13",
+            verified: false,
+            actions: {
+                comments: 45,
+                retweets: 10,
+                likes: 320,
+                views: "12.3K"
+            },
+            isLiked: true,
+            isAd: false // Marca este tweet como un anuncio
+
         }
+
+
+
 
 
     ];
@@ -281,32 +325,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // --- LÓGICA PARA OCULTAR ELEMENTOS EN SCROLL ---
+    // --- LÓGICA PARA OCULTAR/MOSTRAR ELEMENTOS SEGÚN LA DIRECCIÓN DEL SCROLL ---
     const header = document.querySelector('.header');
-    const tabsContainer = document.querySelector('.tabs'); // Se renombra para evitar conflicto con la variable 'tabs' existente
-    let scrollTimeout;
+    const tabsContainer = document.querySelector('.tabs');
+    let lastScrollTop = 0; // Variable para guardar la última posición del scroll
 
     window.addEventListener('scroll', () => {
-        // Ocultar elementos inmediatamente al hacer scroll
-        if (header) header.classList.add('is-hidden');
-        if (tabsContainer) tabsContainer.classList.add('is-hidden');
+        let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            // --- SCROLL HACIA ABAJO: DESAPARECEN ---
+            if (header) header.classList.add('is-hidden');
+            if (tabsContainer) tabsContainer.classList.add('is-hidden');
+            floatingContainer.classList.add('hidden');
+
+        } else {
+            // --- SCROLL HACIA ARRIBA: APARECEN ---
+            if (header) header.classList.remove('is-hidden');
+            if (tabsContainer) tabsContainer.classList.remove('is-hidden');
+            floatingContainer.classList.remove('hidden');
+        }
         
-        floatingContainer.classList.add('hidden');
-        // Si el menú flotante está abierto, ciérralo también
+        // Cierra el menú flotante si está abierto mientras se hace scroll
         if (floatingContainer.classList.contains('open')) {
             floatingContainer.classList.remove('open');
             overlay.classList.remove('active');
         }
 
-        // Limpia el timeout anterior para reiniciar el temporizador
-        clearTimeout(scrollTimeout);
-
-        // Muestra los elementos después de que el scroll se detenga
-        scrollTimeout = setTimeout(() => {
-            if (header) header.classList.remove('is-hidden');
-            if (tabsContainer) tabsContainer.classList.remove('is-hidden');
-            floatingContainer.classList.remove('hidden');
-        }, 300); // 300ms de espera para una sensación más suave
+        // Actualiza la última posición del scroll
+        // Se usa `scrollTop <= 0` para manejar el caso de llegar al tope en iOS
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
 
 

@@ -409,7 +409,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
+    box-shadow: 0 4px 12px rgba(192, 26, 26, 0);
     transition: background-color 0.2s, transform 0.3s ease-out;
     z-index: 2; /* Asegura que esté sobre los botones de acción */
 }
@@ -505,7 +505,7 @@ body {
     visibility: hidden;
     width: max-content;
     background-color: none; /* Fondo más sutil */
-    color: #E7E9EA;
+    color: #e7e9ea;
     text-align: center;
     border-radius: 4px;
     padding: 4px 10px;
@@ -526,6 +526,7 @@ body {
 .floating-container.open .action-btn .tooltip-text {
     opacity: 1;
     visibility: visible;
+   
     
 }
 
@@ -569,7 +570,7 @@ body {
 .compose-btn .tooltip-text {
     visibility: hidden;
     width: max-content;
-    background-color: #273340;
+    background-color: #27334000;
     color: #E7E9EA;
     text-align: center;
     border-radius: 4px;
