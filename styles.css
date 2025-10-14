@@ -352,7 +352,7 @@ body {
     cursor: pointer;
     font-size: 26px;
     position: relative;
-    
+
     /* Necesario para posicionar la insignia de notificación */
 }
 
@@ -392,7 +392,8 @@ body {
 
 .floating-container.hidden {
     opacity: 0;
-    transform: translateY(150px); /* Desliza el contenedor hacia abajo */
+    transform: translateY(150px);
+    /* Desliza el contenedor hacia abajo */
     pointer-events: none;
 }
 
@@ -411,7 +412,8 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(192, 26, 26, 0);
     transition: background-color 0.2s, transform 0.3s ease-out;
-    z-index: 2; /* Asegura que esté sobre los botones de acción */
+    z-index: 2;
+    /* Asegura que esté sobre los botones de acción */
 }
 
 .compose-btn:hover {
@@ -420,11 +422,13 @@ body {
 
 /* Animación de íconos del botón de componer */
 .compose-btn {
-    position: relative; /* Contenedor para posicionamiento absoluto de los íconos */
+    position: relative;
+    /* Contenedor para posicionamiento absoluto de los íconos */
 }
 
 .compose-btn i {
-    position: absolute; /* Permite superponer los íconos */
+    position: absolute;
+    /* Permite superponer los íconos */
     top: 50%;
     left: 50%;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
@@ -443,7 +447,8 @@ body {
 
 /* Estado 'open': el '+' se hace pequeño y sube, la pluma aparece */
 .floating-container.open .compose-btn .bi-plus-lg {
-    transform: translate(calc(-50% + 10px), calc(-50% - 10px)) scale(0.5); /* Centra, luego mueve y encoge */
+    transform: translate(calc(-50% + 10px), calc(-50% - 10px)) scale(0.5);
+    /* Centra, luego mueve y encoge */
     opacity: 0.7;
 }
 
@@ -474,7 +479,8 @@ body {
     font-size: 20px;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.34);
-    position: relative; /* Para el tooltip */
+    position: relative;
+    /* Para el tooltip */
 
     /* Ocultos por defecto */
     opacity: 0;
@@ -491,9 +497,17 @@ body {
 }
 
 /* Animación escalonada */
-.floating-container.open .action-buttons .action-btn:nth-child(1) { transition-delay: 0.2s; }
-.floating-container.open .action-buttons .action-btn:nth-child(2) { transition-delay: 0.1s; }
-.floating-container.open .action-buttons .action-btn:nth-child(3) { transition-delay: 0s; }
+.floating-container.open .action-buttons .action-btn:nth-child(1) {
+    transition-delay: 0.2s;
+}
+
+.floating-container.open .action-buttons .action-btn:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.floating-container.open .action-buttons .action-btn:nth-child(3) {
+    transition-delay: 0s;
+}
 
 
 .action-buttons .action-btn:hover {
@@ -504,20 +518,23 @@ body {
 .action-btn .tooltip-text {
     visibility: hidden;
     width: max-content;
-    background-color: none; /* Fondo más sutil */
+    background-color: none;
+    /* Fondo más sutil */
     color: #e7e9ea;
     text-align: center;
     border-radius: 4px;
     padding: 4px 10px;
     position: absolute;
     z-index: 1;
-    right: 60px; /* Posición a la izquierda del botón */
+    right: 60px;
+    /* Posición a la izquierda del botón */
     top: 50%;
     transform: translateY(-50%);
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
     font-size: 16px;
-    pointer-events: none; /* No interactuable */
+    pointer-events: none;
+    /* No interactuable */
 }
 
 
@@ -526,14 +543,22 @@ body {
 .floating-container.open .action-btn .tooltip-text {
     opacity: 1;
     visibility: visible;
-   
-    
+
+
 }
 
 /* Retraso en la aparición del texto para coincidir con el botón */
-.floating-container.open .action-btn:nth-child(1) .tooltip-text { transition-delay: 0.2s; }
-.floating-container.open .action-btn:nth-child(2) .tooltip-text { transition-delay: 0.1s; }
-.floating-container.open .action-btn:nth-child(3) .tooltip-text { transition-delay: 0s; }
+.floating-container.open .action-btn:nth-child(1) .tooltip-text {
+    transition-delay: 0.2s;
+}
+
+.floating-container.open .action-btn:nth-child(2) .tooltip-text {
+    transition-delay: 0.1s;
+}
+
+.floating-container.open .action-btn:nth-child(3) .tooltip-text {
+    transition-delay: 0s;
+}
 
 /* ----------------------------------- 
  * OVERLAY DE BOTÓN FLOTANTE NUEVO TWEET
@@ -545,8 +570,10 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(14, 20, 26, 0.774); /* Color de overlay de X/Twitter */
-    z-index: 1000; /* Debajo del floating-container (1001) */
+    background-color: rgba(14, 20, 26, 0.774);
+    /* Color de overlay de X/Twitter */
+    z-index: 1000;
+    /* Debajo del floating-container (1001) */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease-out;
@@ -554,7 +581,8 @@ body {
 
 #overlay.active {
     opacity: 1;
-    pointer-events: auto; /* Permite hacer clic en el overlay */
+    pointer-events: auto;
+    /* Permite hacer clic en el overlay */
 }
 
 
@@ -577,7 +605,8 @@ body {
     padding: 4px 10px;
     position: absolute;
     z-index: 1;
-    right: 68px; /* A la izquierda del botón (56px de ancho + margen) */
+    right: 68px;
+    /* A la izquierda del botón (56px de ancho + margen) */
     top: 50%;
     transform: translateY(-50%);
     opacity: 0;
@@ -590,7 +619,8 @@ body {
 .floating-container.open .compose-btn .tooltip-text {
     opacity: 1;
     visibility: visible;
-    transition-delay: 0.2s; /* Pequeño retraso para que aparezca después de la animación principal */
+    transition-delay: 0.2s;
+    /* Pequeño retraso para que aparezca después de la animación principal */
 }
 
 /* Clase para ocultar elementos en el scroll */
@@ -598,4 +628,390 @@ body {
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
+}
+
+
+
+
+
+
+/* -----------------------------------
+ * ESTILOS PARA EL BOTÓN "POSTED"
+ * ----------------------------------- */
+
+
+
+
+        .posted-badge {
+            background: linear-gradient(135deg, #1d9bf0 0%, #0c7abf 100%);
+            border-radius: 50px;
+            padding: 8px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(29, 156, 240, 0);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .posted-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(29, 155, 240, 0.4);
+            background: linear-gradient(135deg, #2ba3f7 0%, #1d9bf0 100%);
+        }
+
+        .posted-badge:active {
+            transform: translateY(0);
+        }
+
+        .arrow-icon {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        .avatars-group {
+            display: flex;
+            align-items: center;
+            margin-left: -4px;
+        }
+
+        .avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 1px solid #ffffff;
+            margin-left: -8px;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        .avatar:first-child {
+            margin-left: 0;
+        }
+
+        .posted-text {
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .demo-container {
+            position: fixed;
+            top: 50px; /* Posicionado debajo de las pestañas */
+            left: 50%;
+            transform: translate(-50%, -20px); /* Inicia un poco arriba */
+            text-align: center;
+            z-index: 1002; /* Asegura que esté sobre el feed */
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .demo-container.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, 0); /* Vuelve a su posición original */
+        }
+
+       
+
+        /* Efecto de brillo animado */
+        .posted-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .posted-badge:hover::before {
+            left: 100%;
+        }
+/* ========================================
+   ESTILOS PARA LA BARRA LATERAL DERECHA
+   ======================================== */
+
+#right-sidebar {
+    display: none; /* Oculto por defecto en móviles */
+    padding: 12px 30px 0 30px;
+    width: 350px;
+}
+
+#right-sidebar .sidebar-content {
+    position: sticky;
+    top: 12px;
+}
+
+#right-sidebar .search-container {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+#right-sidebar .search-container i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #71767B;
+    font-size: 18px;
+}
+
+#right-sidebar .search-container input {
+    width: 100%;
+    background-color: #202327;
+    border: 1px solid #202327;
+    border-radius: 9999px;
+    padding: 12px 12px 12px 48px;
+    color: #E7E9EA;
+    font-size: 15px;
+}
+
+#right-sidebar .search-container input:focus {
+    outline: none;
+    border-color: #1D9BF0;
+    background-color: #15202B;
+}
+
+#right-sidebar .trends-container {
+    background-color: #16181C;
+    border-radius: 16px;
+    padding: 12px 16px;
+}
+
+#right-sidebar .trends-container h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+#right-sidebar .trend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+#right-sidebar .trend-item:hover {
+    background-color: #1C1F23;
+}
+
+#right-sidebar .trend-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#right-sidebar .trend-info span {
+    font-size: 13px;
+    color: #71767B;
+}
+
+#right-sidebar .trend-info strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: #E7E9EA;
+}
+
+#right-sidebar .trend-item i {
+    color: #71767B;
+}
+
+#right-sidebar .show-more {
+    color: #1D9BF0;
+    text-decoration: none;
+    font-size: 15px;
+    padding-top: 12px;
+    display: block;
+}
+
+
+/* ========================================
+   MEDIA QUERY PARA PANTALLAS GRANDES
+   ======================================== */
+
+@media screen and (min-width: 988px) {
+    /* --- Layout Principal --- */
+    #desktop-layout-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 1280px; /* Ancho máximo opcional */
+        margin: 0 auto;
+    }
+
+    #main-column {
+        width: 600px;
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+    }
+
+    /* --- Barra lateral derecha --- */
+    #right-sidebar {
+        display: block;
+    }
+
+    /* --- Ajustes a elementos existentes --- */
+    .header, .tabs {
+        position: sticky; /* Se pegan al hacer scroll dentro de su contenedor */
+        top: 0;
+        z-index: 10;
+        width: 100%;
+        /* Se elimina left y right para que se ajusten a #main-column */
+    }
+    
+    .tabs {
+        top: 53px; /* Se pega debajo del header */
+    }
+
+    .feed {
+        margin-top: 0; /* El layout pegajoso maneja el espacio */
+    }
+
+    /* Ocultar elementos solo para móviles */
+    .bottom-nav,
+    .floating-container {
+        display: none;
+    }
+
+    /* Ajuste para que el menú lateral izquierdo no interfiera */
+    .sidebar {
+        z-index: 2001; /* Asegurarse de que esté por encima del overlay */
+    }
+
+    #overlay.active {
+        z-index: 2000;
+    }
+}
+/* ========================================
+   MODO CLARO (SOBREESCRITURAS)
+   ======================================== */
+
+body.light-mode {
+    background-color: #FFFFFF;
+    color: #0F1419;
+}
+
+.light-mode .header,
+.light-mode .tabs,
+.light-mode .bottom-nav,
+.light-mode .sidebar {
+    background-color: #FFFFFFee;
+    border-color: #EFF3F4;
+    color: #0F1419;
+}
+
+.light-mode .tab {
+    color: #536471;
+}
+
+.light-mode .tab.active {
+    color: #0F1419;
+}
+
+.light-mode .tweet {
+    border-color: #EFF3F4;
+}
+
+.light-mode .tweet:hover {
+    background-color: #F7F7F7;
+}
+
+.light-mode .tweet-username,
+.light-mode .tweet-time,
+.light-mode .action-btn {
+    color: #536471;
+}
+
+.light-mode .menu-item {
+    color: #0F1111;
+}
+
+.light-mode .menu-item:hover {
+    background-color: #EFEFEF;
+}
+
+.light-mode .profile-header {
+    border-bottom-color: #EFF3F4;
+}
+
+.light-mode .profile-name,
+.light-mode .stat-number {
+    color: #0F1419;
+}
+
+.light-mode .profile-username,
+.light-mode .stat-label {
+    color: #536471;
+}
+
+.light-mode .separator {
+    background-color: #EFF3F4;
+}
+
+.light-mode #right-sidebar .search-container input {
+    background-color: #EFF3F4;
+    border-color: #EFF3F4;
+    color: #0F1419;
+}
+
+.light-mode #right-sidebar .search-container input:focus {
+    background-color: #FFFFFF;
+}
+
+.light-mode #right-sidebar .trends-container {
+    background-color: #F7F9F9;
+}
+
+.light-mode #right-sidebar .trend-info strong {
+    color: #0F1419;
+}
+
+.light-mode #right-sidebar .trend-info span,
+.light-mode #right-sidebar .trend-item i {
+    color: #536471;
+}
+
+.light-mode .x-logo,
+.light-mode .settings-icon,
+.light-mode .nav-item {
+    color: #0F1419;
+}
+
+.light-mode .purple-badge {
+    border-color: #FFFFFF;
+}
+
+.light-mode .tweet-image {
+    border-color: #CFD9DE;
+}
+
+.light-mode #main-column {
+    border-color: #EFF3F4;
+}
+
+/* Correcciones para Modo Claro */
+.light-mode .menu-icon {
+    color: #0F1419;
+}
+
+.light-mode .action-btn.liked {
+    color: #F91880; /* Mantiene el color rosa para 'me gusta' */
 }

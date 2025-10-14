@@ -19,6 +19,28 @@
     <link rel="stylesheet" href="profile.css" />
   </head>
   <body>
+
+
+    <!-- notificacion nuevos tws-->
+    <div class="demo-container">
+        <div class="posted-badge">
+            <div class="arrow-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 4L12 20M12 4L6 10M12 4L18 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+            <div class="avatars-group">
+                <img src="https://i.pravatar.cc/122?img=1" alt="User 1" class="avatar">
+                <img src="https://i.pravatar.cc/120?img=2" alt="User 2" class="avatar">
+                <img src="https://i.pravatar.cc/40?img=4" alt="User 4" class="avatar">
+            </div>
+            <span class="posted-text">posteó</span>
+        </div>
+        
+    </div>
+
+
+
     <!-- Sidebar Menu -->
     <div class="sidebar">
       <!-- Profile Header -->
@@ -104,24 +126,66 @@
       <img src="img/x.jpg" alt="Logo x-logo" class="logo" />
     </div>
 
-    <!-- Encabezado principal de la aplicación -->
-    <header class="header">
-      <img src="img/carlosjose.PNG" alt="Foto de perfil" class="profile-pic" />
-      <div class="x-logo">𝕏</div>
-      <i class="bi bi-gear"></i>
-    </header>
+    <div id="desktop-layout-container">
+      <div id="main-column">
+        <!-- Encabezado principal de la aplicación -->
+        <header class="header">
+          <img src="img/carlosjose.PNG" alt="Foto de perfil" class="profile-pic" />
+          <div class="x-logo">𝕏</div>
+          <i class="bi bi-gear"></i>
+        </header>
 
-    <!-- Pestañas de navegación de contenido -->
-    <nav class="tabs">
-      <div class="tab active">Para ti</div>
-      <div class="tab">Siguiendo</div>
-      <div class="tab">Trabajo Remoto Latinoame...</div>
-    </nav>
+        <!-- Pestañas de navegación de contenido -->
+        <nav class="tabs">
+          <div class="tab active">Para ti</div>
+          <div class="tab">Siguiendo</div>
+          <div class="tab">Trabajo Remoto Latinoame...</div>
+        </nav>
 
-    <!-- Contenido principal (Feed de Tweets) -->
-    <main class="feed" id="feed">
-      <!-- El contenido de los tweets se generará dinámicamente aquí -->
-    </main>
+        <!-- Contenido principal (Feed de Tweets) -->
+        <main class="feed" id="feed">
+          <!-- El contenido de los tweets se generará dinámicamente aquí -->
+        </main>
+      </div>
+
+      <aside id="right-sidebar">
+        <div class="sidebar-content">
+          <div class="search-container">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Buscar en X" />
+          </div>
+
+          <div class="trends-container">
+            <h3>Qué está pasando</h3>
+            <div class="trend-item">
+              <div class="trend-info">
+                <span>Tendencia en Colombia</span>
+                <strong>#GeminiDev</strong>
+                <span>1,234 posts</span>
+              </div>
+              <i class="bi bi-three-dots"></i>
+            </div>
+            <div class="trend-item">
+              <div class="trend-info">
+                <span>Tecnología · Tendencia</span>
+                <strong>React 19</strong>
+                <span>9,876 posts</span>
+              </div>
+              <i class="bi bi-three-dots"></i>
+            </div>
+            <div class="trend-item">
+              <div class="trend-info">
+                <span>Videojuegos · Tendencia</span>
+                <strong>GTA VI</strong>
+                <span>1.5M posts</span>
+              </div>
+              <i class="bi bi-three-dots"></i>
+            </div>
+            <a href="#" class="show-more">Mostrar más</a>
+          </div>
+        </div>
+      </aside>
+    </div>
 
     <!-- Botón para componer un nuevo Tweet -->
     <div class="floating-container">

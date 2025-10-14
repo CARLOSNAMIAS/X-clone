@@ -10,6 +10,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000); // Tiempo en milisegundos
     }
 
+    // --- LÓGICA DEL INTERRUPTOR DE TEMA (MODO CLARO/OSCURO) ---
+    const themeToggleButton = document.querySelector('[title="Cambiar a modo oscuro"]');
+    const body = document.body;
+
+    if (themeToggleButton) {
+        const themeIcon = themeToggleButton.querySelector('i');
+
+        // Función para aplicar el tema y el ícono
+        const applyTheme = (theme) => {
+            if (theme === 'light') {
+                body.classList.add('light-mode');
+                if (themeIcon) themeIcon.classList.replace('bi-moon-stars', 'bi-sun-fill');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light-mode');
+                if (themeIcon) themeIcon.classList.replace('bi-sun-fill', 'bi-moon-stars');
+                localStorage.setItem('theme', 'dark');
+            }
+        };
+
+        // Cargar el tema guardado al iniciar la página
+        const savedTheme = localStorage.getItem('theme') || 'dark'; // 'dark' es el tema por defecto
+        applyTheme(savedTheme);
+
+        // Listener de clic para el botón de cambio de tema
+        themeToggleButton.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
+    }
+
     // --- BASE DE DATOS SIMULADA ---
 
     /**
@@ -124,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             time: "· 1h",
             content: "La naturaleza nos regala paisajes impresionantes. 🌄🍃 #Aventura #Exploración",
             image: "img/nature.jpg",
-            avatar: "https://i.pravatar.cc/22?u=carlos_13",
+            avatar: "https://i.pravatar.cc/22?u=userr",
             verified: false,
             actions: {
                 comments: 45,
@@ -164,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             time: "· 3h",
             content: "Los barcos son una maravilla de la ingeniería y la aventura. Navegar por el océano es una experiencia única. #Viaje #Aventura",
             image: "img/barcos.jpg",
-            avatar: "https://i.pravatar.cc/9?u=jose_13",
+            avatar: "https://i.pravatar.cc/12?u=jose_13",
             verified: false,
             actions: {
                 comments: 45,
@@ -311,6 +343,28 @@ document.addEventListener('DOMContentLoaded', () => {
         closeSidebar(); // Cierra el menú lateral
         // La función closeMenu ya se encarga de ocultar el overlay
     });
+
+    // --- LÓGICA DEL BOTÓN "POSTED" (DEMO-CONTAINER) ---
+    const demoContainer = document.querySelector('.demo-container');
+
+    if (demoContainer) {
+        // Muestra u oculta el botón según la posición del scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 800) {
+                demoContainer.classList.add('visible');
+            } else {
+                demoContainer.classList.remove('visible');
+            }
+        });
+
+        // Acción al hacer clic en el botón
+        demoContainer.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     /**
      * Placeholder para manejar las acciones de los botones (video, audio, imagen).
