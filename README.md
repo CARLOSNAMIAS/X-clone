@@ -13,10 +13,12 @@ Este proyecto es un clon de la interfaz de usuario de Twitter (ahora conocido co
 *   **Splash Screen**: Pantalla de carga inicial para una experiencia de usuario fluida.
 *   **Feed Dinámico de Tweets**: Renderizado de tweets a partir de una base de datos simulada.
 *   **Interacciones de Tweets**: Funcionalidad de "Me gusta" con actualización visual.
-*   **Navegación Intuitiva**: Pestañas de navegación superior y barra de navegación inferior.
-*   **Botón Flotante para Componer**: Botón de acción rápida que se oculta al hacer scroll.
+*   **Navegación Inteligente**: Las barras de navegación superior e inferior se ocultan al hacer scroll hacia abajo para maximizar el espacio y reaparecen al subir.
+*   **Menú Lateral Deslizable**: Acceso rápido al perfil, configuraciones y más opciones desde un menú off-canvas.
+*   **Botón Flotante Animado**: Botón para componer tweets que se oculta con una elegante animación de encogimiento y desvanecimiento.
 *   **Scroll Infinito**: Carga automática de más tweets al llegar al final del feed.
-*   **Diseño Responsivo**: Adaptable a diferentes tamaños de pantalla.
+*   **Tema Claro/Oscuro**: Permite al usuario elegir entre un tema claro (predeterminado) y uno oscuro. La preferencia se guarda localmente.
+*   **Diseño Responsivo**: Interfaz adaptable a diferentes tamaños de pantalla, desde móviles hasta escritorio.
 
 ## Instalación y Uso
 Para ejecutar este proyecto localmente, sigue estos pasos:

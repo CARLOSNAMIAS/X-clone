@@ -4,7 +4,7 @@
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#15202B" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="description" content="Clon de Twitter" />
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
 
@@ -20,8 +20,7 @@
   </head>
   <body>
 
-
-    <!-- notificacion nuevos tws-->
+    <!-- ========= Notificación de Nuevos Posts ========= -->
     <div class="demo-container">
         <div class="posted-badge">
             <div class="arrow-icon">
@@ -36,14 +35,13 @@
             </div>
             <span class="posted-text">posteó</span>
         </div>
-        
     </div>
+    <!-- ========= Fin de la Notificación ========= -->
 
 
-
-    <!-- Sidebar Menu -->
+    <!-- ========= Menú Lateral Deslizable (Sidebar) ========= -->
     <div class="sidebar">
-      <!-- Profile Header -->
+      <!-- Cabecera del Perfil -->
       <div class="profile-header">
         <div class="header-top">
           <div class="profile-avatar">
@@ -78,7 +76,7 @@
         </div>
       </div>
 
-      <!-- Menu Items -->
+      <!-- Elementos de Navegación del Menú -->
       <div class="menu-section">
         <button class="menu-item">
           <div class="menu-icon"><i class="bi bi-person"></i></div>
@@ -108,6 +106,7 @@
 
       <div class="separator"></div>
 
+      <!-- Sección de Configuración y Herramientas -->
       <div class="menu-section">
         <button class="menu-item">
           <div class="menu-text">Herramientas profesionales</div>
@@ -120,41 +119,53 @@
         </button>
       </div>
     </div>
+    <!-- ========= Fin del Menú Lateral ========= -->
 
-    <!-- Splash Screen -->
+
+    <!-- ========= Pantalla de Carga (Splash Screen) ========= -->
     <div id="splash-screen">
       <img src="img/x.jpg" alt="Logo x-logo" class="logo" />
     </div>
+    <!-- ========= Fin de la Pantalla de Carga ========= -->
 
+
+    <!-- ========= Contenedor Principal para Layout de Escritorio ========= -->
     <div id="desktop-layout-container">
+      
+      <!-- === Columna Principal (Contenido Central) === -->
       <div id="main-column">
-        <!-- Encabezado principal de la aplicación -->
+        <!-- Encabezado de la App (Móvil y Escritorio) -->
         <header class="header">
           <img src="img/carlosjose.PNG" alt="Foto de perfil" class="profile-pic" />
           <div class="x-logo">𝕏</div>
           <i class="bi bi-gear"></i>
         </header>
 
-        <!-- Pestañas de navegación de contenido -->
+        <!-- Pestañas de Navegación -->
         <nav class="tabs">
           <div class="tab active">Para ti</div>
           <div class="tab">Siguiendo</div>
           <div class="tab">Trabajo Remoto Latinoame...</div>
         </nav>
 
-        <!-- Contenido principal (Feed de Tweets) -->
+        <!-- Feed de Tweets -->
         <main class="feed" id="feed">
-          <!-- El contenido de los tweets se generará dinámicamente aquí -->
+          <!-- El contenido de los tweets se genera dinámicamente aquí vía JS -->
         </main>
       </div>
+      <!-- === Fin de la Columna Principal === -->
 
+      
+      <!-- === Barra Lateral Derecha (Solo Escritorio) === -->
       <aside id="right-sidebar">
         <div class="sidebar-content">
+          <!-- Barra de Búsqueda -->
           <div class="search-container">
             <i class="bi bi-search"></i>
             <input type="text" placeholder="Buscar en X" />
           </div>
 
+          <!-- Tarjeta de Tendencias -->
           <div class="trends-container">
             <h3>Qué está pasando</h3>
             <div class="trend-item">
@@ -185,10 +196,15 @@
           </div>
         </div>
       </aside>
-    </div>
+      <!-- === Fin de la Barra Lateral Derecha === -->
 
-    <!-- Botón para componer un nuevo Tweet -->
+    </div>
+    <!-- ========= Fin del Contenedor de Escritorio ========= -->
+
+
+    <!-- ========= Botón Flotante para Componer (Móvil) ========= -->
     <div class="floating-container">
+      <!-- Botones de acción secundarios -->
       <div class="action-buttons" id="actionButtons">
         <button
           class="action-btn btn-video"
@@ -215,6 +231,7 @@
           <span class="tooltip-text">Fotos</span>
         </button>
       </div>
+      <!-- Botón principal -->
       <button
         class="compose-btn"
         id="composeBtn"
@@ -225,8 +242,10 @@
         <span class="tooltip-text">Publicar</span>
       </button>
     </div>
+    <!-- ========= Fin del Botón Flotante ========= -->
 
-    <!-- Navegación inferior principal -->
+
+    <!-- ========= Barra de Navegación Inferior (Móvil) ========= -->
     <footer class="bottom-nav">
       <div class="nav-item active"><i class="bi bi-house-door-fill"></i></div>
       <div class="nav-item"><i class="bi bi-search"></i></div>
@@ -238,17 +257,22 @@
       </div>
       <div class="nav-item"><i class="bi bi-envelope"></i></div>
     </footer>
+    <!-- ========= Fin de la Navegación Inferior ========= -->
 
-    <!-- Overlay para el fondo oscuro -->
+
+    <!-- ========= Overlay para Fondos de Menú ========= -->
     <div id="overlay"></div>
+    <!-- ========= Fin del Overlay ========= -->
 
-    <!-- Script principal de la aplicación -->
+
+    <!-- ========= Scripts ========= -->
     <script src="script.js"></script>
-
-    <!-- 100% privacy-first analytics -->
+    <!-- Script de analíticas (Simple Analytics) -->
     <script
       async
       src="https://scripts.simpleanalyticscdn.com/latest.js"
     ></script>
+    <!-- ========= Fin de Scripts ========= -->
+
   </body>
 </html>
