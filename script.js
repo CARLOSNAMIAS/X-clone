@@ -399,51 +399,11 @@ document.addEventListener('DOMContentLoaded', () => {
         closeSidebar();   // Cierra el menú lateral.
     });
 
-    // --- LÓGICA DE DESLIZAMIENTO (SWIPE) PARA CERRAR SIDEBAR ---
-    let isDragging = false;
-    let startX = 0;
-    let currentTranslateX = 0;
-
-    if (sidebar) {
-        sidebar.addEventListener('touchstart', (e) => {
-            if (sidebar.classList.contains('show')) {
-                isDragging = true;
-                startX = e.touches[0].clientX;
-                // Desactiva la transición durante el arrastre para un seguimiento 1:1
-                sidebar.style.transition = 'none'; 
-            }
-        });
-
-        sidebar.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-
-            const currentX = e.touches[0].clientX;
-            const diffX = currentX - startX;
-
-            // Solo permite deslizar hacia la izquierda (para cerrar)
-            if (diffX < 0) {
-                currentTranslateX = diffX;
-                sidebar.style.transform = `translateX(${currentTranslateX}px)`;
-            }
-        });
-
-        sidebar.addEventListener('touchend', () => {
-            if (!isDragging) return;
-
-            isDragging = false;
-            sidebar.style.transition = 'transform 0.3s ease-in-out';
-
-            const sidebarWidth = sidebar.offsetWidth;
-            const swipeThreshold = sidebarWidth * 0.4;
-
-            sidebar.style.transform = '';
-
-            if (currentTranslateX < -swipeThreshold) {
-                closeSidebar(); // Llama a la función centralizada
-            }
-
-            currentTranslateX = 0;
-            startX = 0;
+    // --- LÓGICA DE CIERRE DEL SIDEBAR AL CLICAR LA FOTO DE PERFIL ---
+    const sidebarProfileAvatar = document.querySelector('.sidebar .profile-avatar');
+    if (sidebarProfileAvatar) {
+        sidebarProfileAvatar.addEventListener('click', () => {
+            closeSidebar();
         });
     }
 
