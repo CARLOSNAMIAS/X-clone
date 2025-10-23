@@ -4,7 +4,7 @@
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#15202B" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="description" content="Clon de Twitter" />
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
 
@@ -16,54 +16,236 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="profile.css" />
   </head>
   <body>
-    <!-- Splash Screen -->
+
+    <!-- ========= Notificación de Nuevos Posts ========= -->
+    <div class="demo-container">
+        <div class="posted-badge">
+            <div class="arrow-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 4L12 20M12 4L6 10M12 4L18 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+            <div class="avatars-group">
+                <img src="https://i.pravatar.cc/122?img=1" alt="User 1" class="avatar">
+                <img src="https://i.pravatar.cc/120?img=2" alt="User 2" class="avatar">
+                <img src="https://i.pravatar.cc/40?img=4" alt="User 4" class="avatar">
+            </div>
+            <span class="posted-text">posteó</span>
+        </div>
+    </div>
+    <!-- ========= Fin de la Notificación ========= -->
+
+
+    <!-- ========= Menú Lateral Deslizable (Sidebar) ========= -->
+    <div class="sidebar">
+      <!-- Cabecera del Perfil -->
+      <div class="profile-header">
+        <div class="header-top">
+          <div class="profile-avatar">
+            <img
+              src="img/carlosjose.PNG"
+              alt="Foto de perfil"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+            <div class="purple-badge"></div>
+          </div>
+          <div class="header-icons">
+            <button
+              class="icon-btn"
+              aria-label="Más opciones"
+              title="Más opciones"
+            >
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+          </div>
+        </div>
+        <div class="profile-name">Carlos Namias</div>
+        <div class="profile-username">@carlosnamias</div>
+        <div class="profile-stats">
+          <div class="stat">
+            <span class="stat-number">100</span>
+            <span class="stat-label">Siguiendo</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">3mil</span>
+            <span class="stat-label">Seguidores</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Elementos de Navegación del Menú -->
+      <div class="menu-section">
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-person"></i></div>
+          <div class="menu-text">Perfil</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><span class="x-logo">𝕏</span></div>
+          <div class="menu-text">Premium</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-bookmark"></i></div>
+          <div class="menu-text">Elementos guardados</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-list-ul"></i></div>
+          <div class="menu-text">Listas</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-mic"></i></div>
+          <div class="menu-text">Espacios</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-icon"><i class="bi bi-cash-coin"></i></div>
+          <div class="menu-text">Monetización</div>
+        </button>
+      </div>
+
+      <div class="separator"></div>
+
+      <!-- Sección de Configuración y Herramientas -->
+      <div class="menu-section">
+        <button class="menu-item">
+          <div class="menu-text">Herramientas profesionales</div>
+        </button>
+        <button class="menu-item">
+          <div class="menu-text">Configuración y privacidad</div>
+        </button>
+        <button class="menu-item" title="Cambiar a modo oscuro" aria-label="Cambiar a modo oscuro">
+          <i class="bi bi-moon-stars"></i>
+        </button>
+      </div>
+    </div>
+    <!-- ========= Fin del Menú Lateral ========= -->
+
+
+    <!-- ========= Pantalla de Carga (Splash Screen) ========= -->
     <div id="splash-screen">
       <img src="img/x.jpg" alt="Logo x-logo" class="logo" />
     </div>
+    <!-- ========= Fin de la Pantalla de Carga ========= -->
 
-    <!-- Encabezado principal de la aplicación -->
-    <header class="header">
-      <img src="img/carlosjose.PNG" alt="Foto de perfil" class="profile-pic" />
-      <div class="x-logo">𝕏</div>
-      <i class="bi bi-gear"></i>
-    </header>
 
-    <!-- Pestañas de navegación de contenido -->
-    <nav class="tabs">
-      <div class="tab active">Para ti</div>
-      <div class="tab">Siguiendo</div>
-      <div class="tab">Trabajo Remoto Latinoame...</div>
-    </nav>
+    <!-- ========= Contenedor Principal para Layout de Escritorio ========= -->
+    <div id="desktop-layout-container">
+      
+      <!-- === Columna Principal (Contenido Central) === -->
+      <div id="main-column">
+        <!-- Encabezado de la App (Móvil y Escritorio) -->
+        <header class="header">
+          <img src="img/carlosjose.PNG" alt="Foto de perfil" class="profile-pic" />
+          <div class="x-logo">𝕏</div>
+          <i class="bi bi-gear"></i>
+        </header>
 
-    <!-- Contenido principal (Feed de Tweets) -->
-    <main class="feed" id="feed">
-      <!-- El contenido de los tweets se generará dinámicamente aquí -->
-    </main>
+        <!-- Pestañas de Navegación -->
+        <nav class="tabs">
+          <div class="tab active">Para ti</div>
+          <div class="tab">Siguiendo</div>
+          <div class="tab">Trabajo Remoto Latinoame...</div>
+        </nav>
 
-    <!-- Botón para componer un nuevo Tweet -->
-     <div class="floating-container">
-        <div class="action-buttons" id="actionButtons">
-            <button class="action-btn btn-video" onclick="handleAction('video')" aria-label="Grabar video">
-                <i class="bi bi-camera-video"></i>
-                <span class="tooltip-text">Transmitir en directo</span>
-            </button>
-            <button class="action-btn btn-audio" onclick="handleAction('audio')" aria-label="Grabar audio">
-                <i class="bi bi-mic-fill"></i>
-                <span class="tooltip-text">Espacio</span>
-            </button>
-            <button class="action-btn btn-image" onclick="handleAction('image')" aria-label="Subir imagen">
-                <i class="bi bi-image"></i>
-                <span class="tooltip-text">Fotos</span>
-            </button>
+        <!-- Feed de Tweets -->
+        <main class="feed" id="feed">
+          <!-- El contenido de los tweets se genera dinámicamente aquí vía JS -->
+        </main>
+      </div>
+      <!-- === Fin de la Columna Principal === -->
+
+      
+      <!-- === Barra Lateral Derecha (Solo Escritorio) === -->
+      <aside id="right-sidebar">
+        <div class="sidebar-content">
+          <!-- Barra de Búsqueda -->
+          <div class="search-container">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Buscar en X" />
+          </div>
+
+          <!-- Tarjeta de Tendencias -->
+          <div class="trends-container">
+            <h3>Qué está pasando</h3>
+            <div class="trend-item">
+              <div class="trend-info">
+                <span>Tendencia en Colombia</span>
+                <strong>#GeminiDev</strong>
+                <span>1,234 posts</span>
+              </div>
+              <i class="bi bi-three-dots"></i>
+            </div>
+            <div class="trend-item">
+              <div class="trend-info">
+                <span>Tecnología · Tendencia</span>
+                <strong>React 19</strong>
+                <span>9,876 posts</span>
+              </div>
+              <i class="bi bi-three-dots"></i>
+            </div>
+            <div class="trend-item">
+              <div class="trend-info">
+                <span>Videojuegos · Tendencia</span>
+                <strong>GTA VI</strong>
+                <span>1.5M posts</span>
+              </div>
+              <i class="bi bi-three-dots"></i>
+            </div>
+            <a href="#" class="show-more">Mostrar más</a>
+          </div>
         </div>
-        <button class="compose-btn" id="composeBtn" aria-label="Componer nuevo tweet">
-            <i class="bi bi-plus-lg"></i>
-        </button>
-    </div>
+      </aside>
+      <!-- === Fin de la Barra Lateral Derecha === -->
 
-    <!-- Navegación inferior principal -->
+    </div>
+    <!-- ========= Fin del Contenedor de Escritorio ========= -->
+
+
+    <!-- ========= Botón Flotante para Componer (Móvil) ========= -->
+    <div class="floating-container">
+      <!-- Botones de acción secundarios -->
+      <div class="action-buttons" id="actionButtons">
+        <button
+          class="action-btn btn-video"
+          onclick="handleAction('video')"
+          aria-label="Grabar video"
+        >
+          <i class="bi bi-camera-reels-fill"></i>
+          <span class="tooltip-text">Transmitir en directo</span>
+        </button>
+        <button
+          class="action-btn btn-audio"
+          onclick="handleAction('audio')"
+          aria-label="Grabar audio"
+        >
+          <i class="bi bi-mic-fill"></i>
+          <span class="tooltip-text">Espacio</span>
+        </button>
+        <button
+          class="action-btn btn-image"
+          onclick="handleAction('image')"
+          aria-label="Subir imagen"
+        >
+          <i class="bi bi-image"></i>
+          <span class="tooltip-text">Fotos</span>
+        </button>
+      </div>
+      <!-- Botón principal -->
+      <button
+        class="compose-btn"
+        id="composeBtn"
+        aria-label="Componer nuevo tweet"
+      >
+        <i class="bi bi-plus-lg"></i>
+        <i class="bi bi-feather"></i>
+        <span class="tooltip-text">Publicar</span>
+      </button>
+    </div>
+    <!-- ========= Fin del Botón Flotante ========= -->
+
+
+    <!-- ========= Barra de Navegación Inferior (Móvil) ========= -->
     <footer class="bottom-nav">
       <div class="nav-item active"><i class="bi bi-house-door-fill"></i></div>
       <div class="nav-item"><i class="bi bi-search"></i></div>
@@ -71,21 +253,26 @@
       <div class="nav-item"><i class="bi bi-people"></i></div>
       <div class="nav-item">
         <i class="bi bi-bell"></i>
-        <span class="notification-badge">2</span>
+        <span class="notification-badge">99</span>
       </div>
       <div class="nav-item"><i class="bi bi-envelope"></i></div>
     </footer>
+    <!-- ========= Fin de la Navegación Inferior ========= -->
 
-    <!-- Overlay para el fondo oscuro -->
+
+    <!-- ========= Overlay para Fondos de Menú ========= -->
     <div id="overlay"></div>
+    <!-- ========= Fin del Overlay ========= -->
 
-    <!-- Script principal de la aplicación -->
+
+    <!-- ========= Scripts ========= -->
     <script src="script.js"></script>
-
-    <!-- 100% privacy-first analytics -->
+    <!-- Script de analíticas (Simple Analytics) -->
     <script
       async
       src="https://scripts.simpleanalyticscdn.com/latest.js"
     ></script>
+    <!-- ========= Fin de Scripts ========= -->
+
   </body>
 </html>

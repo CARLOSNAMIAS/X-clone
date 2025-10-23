@@ -10,5 +10,8 @@
     "not and_ff <= 125",
     "not firefox <= 126",
     "not opera <= 109"
-  ]
+  ],
+  "hints": {
+    "no-inline-styles": "off"
+  }
 }

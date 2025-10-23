@@ -1,33 +1,24 @@
 /*
- * Hoja de Estilos Principal para el Clon de Twitter
+ * ===================================================================
+ * Hoja de Estilos Principal para el Clon de Twitter (X)
+ * ===================================================================
  * Autor: Carlos Namias
- * Descripción: Este archivo contiene todos los estilos necesarios para la interfaz
- * de la aplicación, imitando la apariencia de Twitter (X).
- * La estructura está dividida en secciones claras para facilitar el mantenimiento.
+ * Descripción: Este archivo contiene todos los estilos para la interfaz
+ * de la aplicación. La estructura está dividida en secciones para 
+ * facilitar el mantenimiento y la comprensión del código.
+ * ===================================================================
  */
 
-/* -----------------------------------
- * ESTILOS GLOBALES Y RESETEO
- * ----------------------------------- */
+/* ===================================================================
+   1. ESTILOS GLOBALES Y RESETEO
+   =================================================================== */
 
-/*
- * Reseteo universal para eliminar márgenes y paddings por defecto.
- * `box-sizing: border-box` asegura que el padding y el borde se incluyan
- * en el ancho y alto total del elemento, facilitando el layout.
- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*
- * Estilos base para el body:
- * - `font-family`: Utiliza la fuente del sistema de Apple/San Francisco, un estándar moderno.
- * - `background-color`: Tono oscuro principal de la interfaz.
- * - `color`: Color de texto principal, un gris claro para buen contraste.
- * - `overflow-x: hidden`: Previene el desbordamiento horizontal en la página.
- */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #15202B;
@@ -35,10 +26,9 @@ body {
     overflow-x: hidden;
 }
 
-
-/* ========================================
-   PANTALLA DE SPLASH (CARGA)
-   ======================================== */
+/* ===================================================================
+   2. PANTALLA DE SPLASH (CARGA)
+   =================================================================== */
 
 #splash-screen {
     position: fixed;
@@ -54,7 +44,6 @@ body {
     transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 
-/* Clase para ocultar el splash con una transición suave */
 .splash-hidden {
     opacity: 0;
     visibility: hidden;
@@ -65,45 +54,35 @@ body {
     animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Animación de entrada del logo */
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: scale(0.9);
     }
-
     to {
         opacity: 1;
         transform: scale(1);
     }
 }
 
-/* -----------------------------------
- * ENCABEZADO FIJO (HEADER)
- * ----------------------------------- */
+/* ===================================================================
+   3. ENCABEZADO FIJO (HEADER)
+   =================================================================== */
 
-/*
- * Contenedor principal del encabezado.
- * - `position: fixed`: Fija el header en la parte superior de la ventana.
- * - `background-color`: Ligeramente transparente para el efecto de desenfoque.
- * - `backdrop-filter: blur(12px)`: Crea un efecto de "vidrio esmerilado" sobre el contenido que se desplaza debajo.
- * - `z-index: 1000`: Asegura que el header esté por encima de otros elementos de la página.
- */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 53px;
-    background-color: #15202Bee;
-    /* El `ee` final indica opacidad */
-    backdrop-filter: blur(12px);
+    background-color: #15202Bee; /* El `ee` final indica opacidad */
+    backdrop-filter: blur(12px); /* Efecto "vidrio esmerilado" */
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    
     z-index: 1000;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .profile-pic {
@@ -124,54 +103,43 @@ body {
     cursor: pointer;
 }
 
-/* -----------------------------------
- * PESTAÑAS DE NAVEGACIÓN (TABS)
- * ----------------------------------- */
+/* ===================================================================
+   4. PESTAÑAS DE NAVEGACIÓN (TABS)
+   =================================================================== */
 
-/*
- * Contenedor de las pestañas, también fijo debajo del header.
- * - `top: 53px`: Lo posiciona justo debajo del header (que tiene 53px de alto).
- * - `z-index: 999`: Ligeramente inferior al header para que el header se superponga si es necesario.
- */
 .tabs {
     position: fixed;
-    top: 53px;
+    top: 53px; /* Justo debajo del header */
     left: 0;
     right: 0;
     height: 53px;
-    background-color: #15202Bee;
+    background-color: #15202bc2;
     backdrop-filter: blur(12px);
     display: flex;
     border-bottom: 1px solid #313a41;
     z-index: 999;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-/*
- * Estilo individual de cada pestaña.
- * - `flex: 1`: Permite que las pestañas compartan el espacio disponible por igual.
- */
 .tab {
-    flex: 1;
+    flex: 1; /* Comparte el espacio disponible por igual */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 15px;
     font-weight: 500;
-    color: #727d89;
-    /* Color para pestañas inactivas */
+    color: #727d89; /* Color para pestañas inactivas */
     cursor: pointer;
     position: relative;
     transition: background-color 0.2s;
 }
 
 .tab:hover {
-    background-color: #1C2732;
-    /* Feedback visual al pasar el mouse */
+    background-color: #1c273200;
 }
 
 .tab.active {
-    color: #E7E9EA;
-    /* Color más brillante para la pestaña activa */
+    color: #E7E9EA; /* Color más brillante para la pestaña activa */
     font-weight: 700;
 }
 
@@ -187,25 +155,14 @@ body {
     border-radius: 2px 2px 0 0;
 }
 
-/* -----------------------------------
- * FEED PRINCIPAL
- * ----------------------------------- */
+/* ===================================================================
+   5. FEED PRINCIPAL Y TWEETS
+   =================================================================== */
 
-/*
- * Contenedor del feed de tweets.
- * - `margin-top: 106px`: Empuja el contenido hacia abajo para que no quede oculto
- *   por el header (53px) y las tabs (53px).
- * - `padding-bottom: 70px`: Añade espacio al final para que el último tweet no sea
- *   tapado por la barra de navegación inferior.
- */
 .feed {
-    margin-top: 106px;
-    padding-bottom: 70px;
+    margin-top: 106px; /* Espacio para header (53px) + tabs (53px) */
+    padding-bottom: 70px; /* Espacio para la navegación inferior */
 }
-
-/* -----------------------------------
- * ESTILOS DE CADA TWEET (ARTICLE)
- * ----------------------------------- */
 
 .tweet {
     border-bottom: 1px solid #38444D;
@@ -230,19 +187,16 @@ body {
     border-radius: 50%;
     margin-right: 12px;
     overflow: hidden;
-    /* Esconde cualquier parte de la imagen que se salga del círculo */
 }
 
 .tweet-avatar img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
 }
 
 .tweet-info {
     flex: 1;
-    /* Ocupa el espacio restante */
 }
 
 .tweet-user {
@@ -257,8 +211,7 @@ body {
 }
 
 .verified {
-    color: #1D9BF0;
-    /* Color azul característico de cuentas verificadas */
+    color: #1D9BF0; /* Color azul de cuentas verificadas */
     font-size: 18px;
 }
 
@@ -274,7 +227,6 @@ body {
 
 .tweet-content {
     line-height: 1.4;
-    /* Mejora la legibilidad */
     margin-bottom: 12px;
 }
 
@@ -285,16 +237,15 @@ body {
     border: 1px solid #38444D;
 }
 
-/* -----------------------------------
- * BOTONES DE ACCIÓN DEL TWEET
- * ----------------------------------- */
+/* ===================================================================
+   6. BOTONES DE ACCIÓN DEL TWEET
+   =================================================================== */
 
 .tweet-actions {
     display: flex;
     justify-content: space-between;
     max-width: 425px;
-    margin-left: 52px;
-    /* 40px del avatar + 12px de margen */
+    margin-left: 52px; /* 40px del avatar + 12px de margen */
 }
 
 .action-btn {
@@ -313,25 +264,18 @@ body {
     font-size: 18px;
 }
 
-/* Efecto hover para todos los botones de acción */
 .action-btn:hover {
     color: #1D9BF0;
 }
 
-/* Estilo específico para el botón de "Me gusta" cuando está activado */
 .action-btn.liked {
-    color: #F91880;
-    /* Color rosa para "Me gusta" */
+    color: #F91880; /* Color rosa para "Me gusta" */
 }
 
-/* -----------------------------------
- * NAVEGACIÓN INFERIOR (FOOTER)
- * ----------------------------------- */
+/* ===================================================================
+   7. NAVEGACIÓN INFERIOR (FOOTER)
+   =================================================================== */
 
-/*
- * Barra de navegación fija en la parte inferior.
- * - `z-index: 1000`: Al igual que el header, debe estar por encima del contenido.
- */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -344,21 +288,25 @@ body {
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
+    transition: transform 0.3s ease-out; /* Añadido para la animación */
+}
+
+/* Clase para ocultar el footer al hacer scroll hacia abajo */
+.bottom-nav.is-hidden {
+    transform: translateY(100%);
 }
 
 .nav-item {
-    color: #E7E9EA;
+    color: #e3e2e2;
     cursor: pointer;
     font-size: 26px;
-    position: relative;
-    /* Necesario para posicionar la insignia de notificación */
+    position: relative; /* Necesario para posicionar la insignia de notificación */
 }
 
-/* Insignia de notificación sobre el ícono de campana */
 .notification-badge {
     position: absolute;
-    top: -2px;
-    right: -6px;
+    top: 1px;
+    right: 12px;
     background-color: #1D9BF0;
     color: white;
     font-size: 11px;
@@ -367,16 +315,10 @@ body {
     border-radius: 10px;
 }
 
-/* -----------------------------------
- * BOTÓN FLOTANTE (COMPOSE)
- * ----------------------------------- */
+/* ===================================================================
+   8. BOTÓN FLOTANTE (COMPOSE)
+   =================================================================== */
 
-/*
- * Botón para crear un nuevo tweet.
- * - `position: fixed`: Lo mantiene en una posición fija en la pantalla.
- * - `z-index: 999`: Se asegura de que esté por encima del feed pero potencialmente
- *   debajo de modales u otros elementos con z-index más alto.
- */
 .floating-container {
     position: fixed;
     bottom: 70px;
@@ -390,10 +332,9 @@ body {
 
 .floating-container.hidden {
     opacity: 0;
-    transform: translateY(150px); /* Desliza el contenedor hacia abajo */
+    transform: scale(0); /* Encoge el contenedor hasta desaparecer */
     pointer-events: none;
 }
-
 
 .compose-btn {
     width: 56px;
@@ -407,25 +348,47 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(192, 26, 26, 0);
     transition: background-color 0.2s, transform 0.3s ease-out;
-    z-index: 2; /* Asegura que esté sobre los botones de acción */
+    z-index: 2; /* Sobre los botones de acción */
+    position: relative; /* Contenedor para los íconos internos */
 }
 
 .compose-btn:hover {
     background-color: #1A8CD8;
 }
 
-/* Rotación del ícono '+' a 'x' */
-.floating-container.open .compose-btn i {
-    transform: rotate(135deg);
-    transition: transform 0.3s ease-out;
-}
+/* --- Animación de íconos del botón de componer --- */
 .compose-btn i {
-    transition: transform 0.3s ease-out;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
+/* Estado inicial: solo se ve el '+' */
+.compose-btn .bi-plus-lg {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
 
+.compose-btn .bi-feather {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+}
+
+/* Estado 'open': el '+' se anima y aparece la pluma */
+.floating-container.open .compose-btn .bi-plus-lg {
+    transform: translate(calc(-50% + 10px), calc(-50% - 10px)) scale(0.5);
+    opacity: 0.7;
+}
+
+.floating-container.open .compose-btn .bi-feather {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* --- Botones de acción secundarios (fotos, espacios, etc.) --- */
 .action-buttons {
     display: flex;
     flex-direction: column;
@@ -446,17 +409,19 @@ body {
     justify-content: center;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.34);
     position: relative; /* Para el tooltip */
-
-    /* Ocultos por defecto */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     pointer-events: none;
 }
 
-/* Estilos para cuando el contenedor está abierto */
+.action-buttons .action-btn:hover {
+    background-color: #1A8CD8;
+}
+
+/* Animación de aparición de botones de acción */
 .floating-container.open .action-buttons .action-btn {
     opacity: 1;
     transform: translateY(0);
@@ -468,16 +433,12 @@ body {
 .floating-container.open .action-buttons .action-btn:nth-child(2) { transition-delay: 0.1s; }
 .floating-container.open .action-buttons .action-btn:nth-child(3) { transition-delay: 0s; }
 
-
-.action-buttons .action-btn:hover {
-    background-color: #1A8CD8;
-}
-
-/* Tooltip */
-.action-btn .tooltip-text {
+/* --- Tooltips de los botones --- */
+.action-btn .tooltip-text,
+.compose-btn .tooltip-text {
     visibility: hidden;
     width: max-content;
-    background-color: #27334000; /* Fondo más sutil */
+    background-color: #27334000;
     color: #E7E9EA;
     text-align: center;
     border-radius: 4px;
@@ -490,23 +451,27 @@ body {
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
     font-size: 16px;
-    pointer-events: none; /* No interactuable */
+    pointer-events: none;
 }
 
-/* Muestra el texto cuando el menú está abierto */
-.floating-container.open .action-btn .tooltip-text {
+.compose-btn .tooltip-text { right: 68px; }
+
+/* Muestra los tooltips cuando el menú está abierto */
+.floating-container.open .action-btn .tooltip-text,
+.floating-container.open .compose-btn .tooltip-text {
     opacity: 1;
     visibility: visible;
 }
 
-/* Retraso en la aparición del texto para coincidir con el botón */
+/* Retraso en la aparición de los tooltips */
 .floating-container.open .action-btn:nth-child(1) .tooltip-text { transition-delay: 0.2s; }
 .floating-container.open .action-btn:nth-child(2) .tooltip-text { transition-delay: 0.1s; }
 .floating-container.open .action-btn:nth-child(3) .tooltip-text { transition-delay: 0s; }
+.floating-container.open .compose-btn .tooltip-text { transition-delay: 0.2s; }
 
-/* ----------------------------------- 
- * OVERLAY
- * ----------------------------------- */
+/* ===================================================================
+   9. OVERLAY (FONDO OSCURO)
+   =================================================================== */
 
 #overlay {
     position: fixed;
@@ -515,7 +480,7 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: rgba(14, 20, 26, 0.774); /* Color de overlay de X/Twitter */
-    z-index: 1000; /* Debajo del floating-container (1001) */
+    z-index: 1000; /* Debajo del floating-container (1001) y sidebar (2000) */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease-out;
@@ -523,14 +488,351 @@ body {
 
 #overlay.active {
     opacity: 1;
-    pointer-events: auto; /* Permite hacer clic en el overlay */
+    pointer-events: auto; /* Permite hacer clic para cerrar menús */
 }
 
-
-/* ESTILOS ADICIONALES
- * ----------------------------------- */
+/* ===================================================================
+   10. ESTILOS ADICIONALES Y CLASES DE UTILIDAD
+   =================================================================== */
 
 /* Estilo para diferenciar los tweets que son anuncios */
 .tweet.ad {
     background-color: #1A2732;
 }
+
+/* Clase para ocultar elementos en el scroll */
+.is-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===================================================================
+   11. BOTÓN "POSTED" (NUEVOS TWEETS)
+   =================================================================== */
+
+.demo-container {
+    position: fixed;
+    top: 50px; /* Posicionado debajo de las pestañas */
+    left: 50%;
+    transform: translate(-50%, -20px); /* Inicia un poco arriba */
+    text-align: center;
+    z-index: 1002; /* Sobre el feed y otros elementos */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.demo-container.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0); /* Vuelve a su posición original */
+}
+
+.posted-badge {
+    background: linear-gradient(135deg, #1d9bf0 0%, #0c7abf 100%);
+    border-radius: 50px;
+    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(29, 156, 240, 0);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.posted-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(29, 155, 240, 0.4);
+    background: linear-gradient(135deg, #2ba3f7 0%, #1d9bf0 100%);
+}
+
+.posted-badge:active {
+    transform: translateY(0);
+}
+
+.arrow-icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+}
+
+.avatars-group {
+    display: flex;
+    align-items: center;
+    margin-left: -4px;
+}
+
+.avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    margin-left: -8px;
+    object-fit: cover;
+    background: #fff;
+}
+
+.avatar:first-child {
+    margin-left: 0;
+}
+
+.posted-text {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+/* Efecto de brillo animado */
+.posted-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.posted-badge:hover::before {
+    left: 100%;
+}
+
+/* ===================================================================
+   12. BARRA LATERAL DERECHA (PARA ESCRITORIO)
+   =================================================================== */
+
+#right-sidebar {
+    display: none; /* Oculto por defecto en móviles */
+    padding: 12px 30px 0 30px;
+    width: 350px;
+}
+
+#right-sidebar .sidebar-content {
+    position: sticky;
+    top: 12px;
+}
+
+#right-sidebar .search-container {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+#right-sidebar .search-container i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #71767B;
+    font-size: 18px;
+}
+
+#right-sidebar .search-container input {
+    width: 100%;
+    background-color: #202327;
+    border: 1px solid #202327;
+    border-radius: 9999px;
+    padding: 12px 12px 12px 48px;
+    color: #E7E9EA;
+    font-size: 15px;
+}
+
+#right-sidebar .search-container input:focus {
+    outline: none;
+    border-color: #1D9BF0;
+    background-color: #15202B;
+}
+
+#right-sidebar .trends-container {
+    background-color: #16181C;
+    border-radius: 16px;
+    padding: 12px 16px;
+}
+
+#right-sidebar .trends-container h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+#right-sidebar .trend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+#right-sidebar .trend-item:hover {
+    background-color: #1C1F23;
+}
+
+#right-sidebar .trend-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#right-sidebar .trend-info span {
+    font-size: 13px;
+    color: #71767B;
+}
+
+#right-sidebar .trend-info strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: #E7E9EA;
+}
+
+#right-sidebar .trend-item i {
+    color: #71767B;
+}
+
+#right-sidebar .show-more {
+    color: #1D9BF0;
+    text-decoration: none;
+    font-size: 15px;
+    padding-top: 12px;
+    display: block;
+}
+
+/* ===================================================================
+   13. MEDIA QUERY (DISEÑO PARA ESCRITORIO)
+   =================================================================== */
+
+@media screen and (min-width: 988px) {
+    /* --- Layout Principal --- */
+    #desktop-layout-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+
+    #main-column {
+        width: 600px;
+        border-left: 1px solid #2f3336;
+        border-right: 1px solid #2f3336;
+    }
+
+    /* --- Barra lateral derecha --- */
+    #right-sidebar {
+        display: block;
+    }
+
+    /* --- Ajustes a elementos fijos --- */
+    .header, .tabs {
+        position: sticky; /* Se pegan al hacer scroll dentro de su columna */
+        top: 0;
+        z-index: 10;
+        width: 100%;
+    }
+    
+    .tabs {
+        top: 53px; /* Se pega debajo del header */
+    }
+
+    .feed {
+        margin-top: 0; /* El layout pegajoso maneja el espacio */
+    }
+
+    /* Ocultar elementos solo para móviles */
+    .bottom-nav,
+    .floating-container {
+        display: none;
+    }
+
+    /* Ajuste de z-index para menús */
+    .sidebar { z-index: 2001; }
+    #overlay.active { z-index: 2000; }
+}
+
+/* ===================================================================
+   14. MODO CLARO (SOBREESCRITURAS)
+   =================================================================== */
+
+body.light-mode {
+    background-color: #FFFFFF;
+    color: #0F1419;
+}
+
+.light-mode .header,
+.light-mode .tabs,
+.light-mode .bottom-nav,
+.light-mode .sidebar {
+    background-color: #FFFFFFee;
+    border-color: #EFF3F4;
+    color: #0F1419;
+}
+
+.light-mode .tab { color: #536471; }
+.light-mode .tab.active { color: #0F1419; }
+.light-mode .tweet { border-color: #EFF3F4; }
+.light-mode .tweet:hover { background-color: #F7F7F7; }
+
+.light-mode .tweet-username,
+.light-mode .tweet-time,
+.light-mode .action-btn {
+    color: #536471;
+}
+
+.light-mode .menu-item { color: #0F1111; }
+.light-mode .menu-item:hover { background-color: #EFEFEF; }
+.light-mode .profile-header { border-bottom-color: #EFF3F4; }
+
+.light-mode .profile-name,
+.light-mode .stat-number {
+    color: #0F1419;
+}
+
+.light-mode .profile-username,
+.light-mode .stat-label {
+    color: #536471;
+}
+
+.light-mode .separator { background-color: #EFF3F4; }
+
+.light-mode #right-sidebar .search-container input {
+    background-color: #EFF3F4;
+    border-color: #EFF3F4;
+    color: #0F1419;
+}
+
+.light-mode #right-sidebar .search-container input:focus {
+    background-color: #FFFFFF;
+}
+
+.light-mode #right-sidebar .trends-container { background-color: #F7F9F9; }
+.light-mode #right-sidebar .trend-info strong { color: #0F1419; }
+
+.light-mode #right-sidebar .trend-info span,
+.light-mode #right-sidebar .trend-item i {
+    color: #536471;
+}
+
+.light-mode .x-logo,
+.light-mode .settings-icon,
+.light-mode .nav-item {
+    color: #0F1419;
+}
+
+.light-mode .purple-badge { border-color: #FFFFFF; }
+.light-mode .tweet-image { border-color: #CFD9DE; }
+.light-mode #main-column { border-color: #EFF3F4; }
+.light-mode .menu-icon { color: #0F1419; }
+.light-mode .action-btn.liked { color: #F91880; }

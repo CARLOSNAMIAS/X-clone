@@ -1,3 +1,15 @@
+/**
+ * @file script.js
+ * @description Script principal para el clon de Twitter (X).
+ * Este archivo maneja toda la interactividad de la interfaz de usuario, incluyendo:
+ * - Lógica de la pantalla de carga (splash screen).
+ * - Cambio entre modo claro y oscuro.
+ * - Renderizado dinámico de tweets desde una base de datos simulada.
+ * - Interacciones del usuario (Me gusta, scroll infinito, menús).
+ * - Comportamiento responsivo y animaciones de la interfaz.
+ * - Gestión del menú lateral (off-canvas) y el botón de acción flotante.
+ */
+
 // Espera a que el contenido del DOM esté completamente cargado antes de ejecutar el script.
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -10,11 +22,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000); // Tiempo en milisegundos
     }
 
+    // --- LÓGICA DEL INTERRUPTOR DE TEMA (MODO CLARO/OSCURO) ---
+    const themeToggleButton = document.querySelector('[title="Cambiar a modo oscuro"]');
+    const body = document.body;
+
+    if (themeToggleButton) {
+        const themeIcon = themeToggleButton.querySelector('i');
+
+        /**
+         * Aplica el tema visual (claro u oscuro) a la aplicación.
+         * Modifica la clase del body, cambia el ícono del botón y guarda la preferencia en localStorage.
+         * @param {string} theme - El tema a aplicar ('light' o 'dark').
+         */
+        const applyTheme = (theme) => {
+            if (theme === 'light') {
+                body.classList.add('light-mode');
+                if (themeIcon) themeIcon.classList.replace('bi-moon-stars', 'bi-sun-fill');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light-mode');
+                if (themeIcon) themeIcon.classList.replace('bi-sun-fill', 'bi-moon-stars');
+                localStorage.setItem('theme', 'dark');
+            }
+        };
+
+        // Al cargar la página, obtiene el tema guardado en localStorage o usa 'light' por defecto.
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        // Añade un listener al botón para alternar entre los temas cuando se hace clic.
+        themeToggleButton.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
+    }
+
     // --- BASE DE DATOS SIMULADA ---
 
     /**
-     * Array de objetos que contiene la información de cada tweet.
-     * Esta estructura permite gestionar los datos de forma centralizada y dinámica.
+     * @const {Array<object>} tweetsData
+     * @description Base de datos simulada en formato de array de objetos.
+     * Cada objeto representa un tweet con su contenido, autor, metadatos e interacciones.
+     * Esta estructura permite una gestión centralizada y facilita el renderizado dinámico del feed.
      */
     const tweetsData = [
         {
@@ -120,6 +170,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         {
             user: "Carlos ",
+            username: "@userr",
+            time: "· 1h",
+            content: "La naturaleza nos regala paisajes impresionantes. 🌄🍃 #Aventura #Exploración",
+            image: "img/nature.jpg",
+            avatar: "https://i.pravatar.cc/22?u=userr",
+            verified: false,
+            actions: {
+                comments: 45,
+                retweets: 10,
+                likes: 30,
+                views: "1.3K"
+            },
+            isLiked: true,
+            isAd: false // Marca este tweet como un anuncio
+        },
+
+
+        // Agrega más tweets aquí...
+         {
+            user: "Carlos ",
             username: "@carlos_13",
             time: "· 1h",
             content: "La pelicula de Star Wars es un clásico que nunca pasa de moda. ¡Que la fuerza te acompañe! 🌌✨ #StarWars #Cine",
@@ -134,7 +204,31 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             isLiked: false,
             isAd: false // Marca este tweet como un anuncio
+        },
+
+
+        // Agrega más tweets aquí...
+          {
+            user: "jose ",
+            username: "@jose_13",
+            time: "· 3h",
+            content: "Los barcos son una maravilla de la ingeniería y la aventura. Navegar por el océano es una experiencia única. #Viaje #Aventura",
+            image: "img/barcos.jpg",
+            avatar: "https://i.pravatar.cc/12?u=jose_13",
+            verified: false,
+            actions: {
+                comments: 45,
+                retweets: 10,
+                likes: 320,
+                views: "12.3K"
+            },
+            isLiked: true,
+            isAd: false // Marca este tweet como un anuncio
+
         }
+
+
+
 
 
     ];
@@ -145,7 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const feed = document.getElementById('feed');
 
     /**
-     * Genera y renderiza los tweets en el feed a partir de los datos.
+     * Genera y renderiza todos los tweets en el feed a partir de la base de datos simulada.
+     * Limpia el contenido actual del feed y luego añade cada tweet nuevo.
      */
     function renderTweets() {
         feed.innerHTML = ''; // Limpia el contenido actual del feed
@@ -156,9 +251,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Crea un elemento de tweet (artículo HTML) a partir de un objeto de datos.
-     * @param {object} tweetData - El objeto con la información del tweet.
-     * @returns {HTMLElement} El elemento del tweet listo para ser añadido al DOM.
+     * Crea un elemento de tweet (un <article> HTML) a partir de un objeto de datos.
+     * @param {object} tweetData - El objeto que contiene toda la información del tweet (usuario, contenido, imagen, etc.).
+     * @returns {HTMLElement} El elemento del tweet listo para ser insertado en el DOM.
      */
     function createTweetElement(tweetData) {
         const article = document.createElement('article');
@@ -210,6 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INTERACTIVIDAD DE LA INTERFAZ (ESTÁTICA) ---
 
+    // Añade un listener a cada pestaña para cambiar la clase 'active' al hacer clic.
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => {
         tab.addEventListener('click', function () {
@@ -218,6 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Añade un listener a cada ítem de la navegación inferior para cambiar la clase 'active'.
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
         item.addEventListener('click', function () {
@@ -226,79 +323,152 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- LÓGICA DEL BOTÓN FLOTANTE Y OVERLAY ---
     const composeBtn = document.getElementById('composeBtn');
     const floatingContainer = document.querySelector('.floating-container');
     const overlay = document.getElementById('overlay');
 
+    /**
+     * Cierra el menú de acción flotante y desactiva el overlay.
+     */
     function closeMenu() {
         floatingContainer.classList.remove('open');
         overlay.classList.remove('active');
     }
 
+    // Listener para el botón principal de componer: abre/cierra el menú de acciones y el overlay.
     composeBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Evita que el clic se propague al overlay si estuviera activo
+        e.stopPropagation(); // Evita que el clic se propague al overlay.
         floatingContainer.classList.toggle('open');
         overlay.classList.toggle('active');
     });
 
-    overlay.addEventListener('click', closeMenu);
+    // --- LÓGICA DEL MENÚ LATERAL (OFF-CANVAS) ---
+    const sidebar = document.querySelector('.sidebar');
+    const profilePicTrigger = document.querySelector('.header .profile-pic');
 
     /**
-     * Placeholder para manejar las acciones de los botones (video, audio, imagen).
-     * @param {string} action - La acción a realizar.
+     * Muestra el menú lateral (sidebar) y activa el overlay.
+     */
+    const openSidebar = () => {
+        if (sidebar) sidebar.classList.add('show');
+        if (overlay) overlay.classList.add('active');
+    };
+
+    /**
+     * Oculta el menú lateral (sidebar).
+     * El overlay se oculta en un listener separado.
+     */
+    const closeSidebar = () => {
+        if (sidebar) sidebar.classList.remove('show');
+    };
+
+    // Listener en la foto de perfil del encabezado para abrir el menú lateral.
+    if (profilePicTrigger) {
+        profilePicTrigger.addEventListener('click', (e) => {
+            e.stopPropagation(); // Previene que se cierren otros menús.
+            openSidebar();
+        });
+    }
+
+    // Listener unificado para el overlay: cierra todos los menús abiertos.
+    overlay.addEventListener('click', () => {
+        closeMenu();      // Cierra el menú del botón flotante.
+        closeSidebar();   // Cierra el menú lateral.
+    });
+
+    // --- LÓGICA DEL BOTÓN "POSTED" (DEMO-CONTAINER) ---
+    const demoContainer = document.querySelector('.demo-container');
+
+    if (demoContainer) {
+        // Muestra u oculta el botón de "nuevos posts" según la posición del scroll.
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 800) {
+                demoContainer.classList.add('visible');
+            } else {
+                demoContainer.classList.remove('visible');
+            }
+        });
+
+        // Al hacer clic en el botón, se desplaza suavemente al inicio de la página.
+        demoContainer.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    /**
+     * Placeholder para manejar las acciones de los botones del menú flotante (video, audio, imagen).
+     * @param {string} action - La acción seleccionada (ej. 'video', 'audio', 'image').
      */
     window.handleAction = function(action) {
         console.log(`Acción seleccionada: ${action}`);
-        closeMenu(); // Cierra el menú después de seleccionar una acción
-        // Aquí se podría implementar la lógica para cada botón
+        closeMenu(); // Cierra el menú después de seleccionar una acción.
         alert(`Funcionalidad para "${action}" no implementada.`);
     }
 
+    // --- LÓGICA PARA OCULTAR/MOSTRAR ELEMENTOS SEGÚN LA DIRECCIÓN DEL SCROLL ---
+    const header = document.querySelector('.header');
+    const tabsContainer = document.querySelector('.tabs');
+    const bottomNav = document.querySelector('.bottom-nav'); // Elemento del footer
+    let lastScrollTop = 0; // Guarda la última posición del scroll para detectar la dirección.
 
-
-    // --- LÓGICA PARA OCULTAR BOTÓN FLOTANTE EN SCROLL ---
-    let scrollTimeout;
     window.addEventListener('scroll', () => {
-        // Cierra el menú si está abierto
-        floatingContainer.classList.remove('open');
-        // Oculta el contenedor
-        floatingContainer.classList.add('hidden');
+        let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-        // Limpia el timeout anterior
-        clearTimeout(scrollTimeout);
+        if (scrollTop > lastScrollTop) {
+            // Scroll hacia abajo: oculta elementos para dar más espacio al contenido.
+            if (header) header.classList.add('is-hidden');
+            if (tabsContainer) tabsContainer.classList.add('is-hidden');
+            if (bottomNav) bottomNav.classList.add('is-hidden'); // Oculta el footer
+            floatingContainer.classList.add('hidden');
 
-        // Muestra el contenedor después de que el scroll se detenga
-        scrollTimeout = setTimeout(() => {
+        } else {
+            // Scroll hacia arriba: muestra los elementos de navegación de nuevo.
+            if (header) header.classList.remove('is-hidden');
+            if (tabsContainer) tabsContainer.classList.remove('is-hidden');
+            if (bottomNav) bottomNav.classList.remove('is-hidden'); // Muestra el footer
             floatingContainer.classList.remove('hidden');
-        }, 250); // 250ms de espera
+        }
+        
+        // Cierra el menú flotante si está abierto mientras se hace scroll para evitar solapamientos.
+        if (floatingContainer.classList.contains('open')) {
+            floatingContainer.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        // Actualiza la última posición del scroll.
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Maneja el caso de llegar al tope en iOS.
     });
-
-
 
     // --- INTERACTIVIDAD DEL FEED (DINÁMICA CON DELEGACIÓN DE EVENTOS) ---
 
+    // Se añade un único listener al contenedor del feed para manejar todos los clics internos.
+    // Esto es más eficiente que añadir un listener a cada tweet.
     feed.addEventListener('click', (e) => {
         const target = e.target;
 
-        // Delegación para el botón "Me gusta"
+        // Busca si el clic fue en un botón de "Me gusta" o en uno de sus hijos.
         const likeBtn = target.closest('.action-btn[aria-label="Me gusta"]');
         if (likeBtn) {
-            e.stopPropagation();
+            e.stopPropagation(); // Evita que el evento se propague al tweet padre.
             handleLike(likeBtn);
-            return; // Detiene la ejecución para no activar el clic del tweet
+            return; // Termina la ejecución para no procesar otros clics.
         }
 
-        // Delegación para el clic en un tweet
+        // Busca si el clic fue en un tweet, pero no en un botón de acción.
         const tweetElement = target.closest('.tweet');
         if (tweetElement && !target.closest('.action-btn') && !target.closest('.tweet-menu')) {
             console.log('Navegando al detalle del tweet...');
-            // Lógica para mostrar el detalle del tweet
+            // Aquí iría la lógica para mostrar el detalle del tweet (no implementada).
         }
     });
 
     /**
-     * Gestiona la lógica del botón "Me gusta".
-     * @param {HTMLElement} likeBtn - El botón que recibió el clic.
+     * Gestiona la lógica del botón "Me gusta": cambia el estilo y actualiza el contador.
+     * @param {HTMLElement} likeBtn - El elemento del botón que recibió el clic.
      */
     function handleLike(likeBtn) {
         const icon = likeBtn.querySelector('i');
@@ -308,22 +478,23 @@ document.addEventListener('DOMContentLoaded', () => {
         likeBtn.classList.toggle('liked');
 
         if (likeBtn.classList.contains('liked')) {
+            // Si ahora tiene "Me gusta"
             icon.classList.replace('bi-heart', 'bi-heart-fill');
             currentLikes++;
         } else {
+            // Si se quitó el "Me gusta"
             icon.classList.replace('bi-heart-fill', 'bi-heart');
             currentLikes--;
         }
         count.textContent = formatLikes(currentLikes);
     }
 
-
     // --- FUNCIONES UTILITARIAS ---
 
     /**
-     * Formatea un número para mostrarlo abreviado (ej. 1.2K).
+     * Formatea un número para mostrarlo de forma abreviada (ej. 1200 -> "1.2K").
      * @param {number} num - El número a formatear.
-     * @returns {string} El número formateado.
+     * @returns {string} El número formateado como texto.
      */
     function formatLikes(num) {
         if (num >= 1000) {
@@ -333,8 +504,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Convierte el texto de likes (ej. "1.2K") a un número.
-     * @param {string} text - El texto a convertir.
+     * Convierte el texto de likes (ej. "1.2K") de nuevo a un número.
+     * @param {string} text - El texto a convertir (ej. "1.2K", "500").
      * @returns {number} El número de likes.
      */
     function parseLikes(text) {
@@ -345,10 +516,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- INICIALIZACIÓN Y SCROLL INFINITO ---
-    let isLoading = false; // Bandera para evitar cargas múltiples
+    let isLoading = false; // Bandera para evitar cargas múltiples y simultáneas.
 
     /**
-     * Añade más tweets al final del feed.
+     * Simula la carga de más tweets y los añade al final del feed.
      */
     function appendTweets() {
         tweetsData.forEach(tweetData => {
@@ -357,22 +528,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event listener para el scroll infinito
+    // Listener para el scroll infinito.
     window.addEventListener('scroll', () => {
-        // Comprueba si el usuario ha llegado cerca del final de la página
-        // y no hay una carga en curso.
+        // Comprueba si el usuario ha llegado cerca del final de la página y no hay una carga en curso.
         if (!isLoading && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
-            isLoading = true; // Activa la bandera
+            isLoading = true; // Activa la bandera para bloquear nuevas cargas.
 
-            // Simula un pequeño retraso de carga (como si viniera de una red)
+            // Simula un retraso de red antes de cargar nuevo contenido.
             setTimeout(() => {
-                appendTweets(); // Añade los nuevos tweets
-                isLoading = false; // Desactiva la bandera
-            }, 500); // 500ms de retraso
+                appendTweets(); // Añade los nuevos tweets al DOM.
+                isLoading = false; // Desactiva la bandera para permitir futuras cargas.
+            }, 500); 
         }
     });
 
-    // Carga inicial de los tweets
+    // Carga inicial de los tweets al abrir la aplicación.
     renderTweets();
 
 });

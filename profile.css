@@ -1,0 +1,234 @@
+/* ===================================================================
+   Hoja de Estilos para el Perfil y Menú Lateral (Sidebar)
+   =================================================================== */
+
+/* --- Reseteo Básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Estilos Generales del Body (Contexto del Menú) --- */
+body {
+    background-color: #1c2732;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* ===================================================================
+   1. CONTENEDOR PRINCIPAL DEL MENÚ LATERAL (SIDEBAR)
+   =================================================================== */
+
+.sidebar {
+    background-color: #15202b;
+    height: 100%;
+    width: 100%;
+    max-width: 280px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000; /* Alto para estar sobre el overlay y otros contenidos */
+    transform: translateX(-100%); /* Oculto por defecto fuera de la pantalla */
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto; /* Permite scroll si el contenido es largo */
+}
+
+/* Clase que se añade con JS para mostrar el menú */
+.sidebar.show {
+    transform: translateX(0);
+}
+
+/* ===================================================================
+   2. CABECERA DEL PERFIL (DENTRO DEL SIDEBAR)
+   =================================================================== */
+
+.profile-header {
+    padding: 16px 16px 20px 16px;
+    border-bottom: 1px solid #2f3336;
+    position: relative;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #000000, #6c41ca);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.purple-badge {
+    position: absolute;
+    bottom: none;
+    right: 1px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #000000, #3f35cd);
+    border-radius: 50%;
+    border: 3px solid #15202b;
+}
+
+.header-icons {
+    display: flex;
+    gap: 16px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: #8899a6;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.profile-username {
+    font-size: 15px;
+    color: #8899a6;
+    margin-bottom: 12px;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.stat {
+    cursor: pointer;
+}
+
+.stat:hover {
+    text-decoration: underline;
+}
+
+.stat-number {
+    font-weight: 700;
+    color: #fff;
+    margin-right: 4px;
+}
+
+.stat-label {
+    color: #8899a6;
+}
+
+/* ===================================================================
+   3. ELEMENTOS DEL MENÚ (NAVEGACIÓN)
+   =================================================================== */
+
+.menu-section {
+    padding: 4px 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    color: #fff;
+    position: relative;
+}
+
+.menu-item:hover {
+    background-color: #1c2732;
+}
+
+.menu-icon {
+    font-size: 24px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+}
+
+.x-logo {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.menu-text {
+    font-size: 20px;
+    font-weight: 400;
+    flex: 1;
+}
+
+.separator {
+    height: 1px;
+    background-color: #2f3336;
+    margin: 4px 0;
+}
+
+/* ===================================================================
+   4. INTERRUPTOR DE TEMA (MODO OSCURO/CLARO)
+   =================================================================== */
+
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px 16px;
+    background-color: transparent;
+    border: none;
+    color: var(--primary-text-color); /* Usa variables para el modo claro */
+    font-size: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.theme-toggle-btn .menu-icon {
+    font-size: 24px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--primary-text-color);
+}
+
+.theme-toggle-btn .menu-text {
+    font-size: 20px;
+    font-weight: 400;
+    flex: 1;
+}
+
+/* ===================================================================
+   5. MEDIA QUERIES (AJUSTES RESPONSIVE)
+   =================================================================== */
+
+@media (max-width: 768px) {
+    .sidebar {
+        max-width: 85%; /* Ocupa más pantalla en dispositivos pequeños */
+    }
+}
