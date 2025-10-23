@@ -377,11 +377,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
-     * Oculta el menú lateral (sidebar).
-     * El overlay se oculta en un listener separado.
+     * Oculta el menú lateral (sidebar) y el overlay.
+     * Esta función centraliza la lógica de cierre.
      */
     const closeSidebar = () => {
         if (sidebar) sidebar.classList.remove('show');
+        if (overlay) overlay.classList.remove('active');
     };
 
     // Listener en la foto de perfil del encabezado para abrir el menú lateral.
@@ -430,24 +431,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isDragging) return;
 
             isDragging = false;
-            // Reactiva la transición para la animación de cierre o retorno
             sidebar.style.transition = 'transform 0.3s ease-in-out';
 
             const sidebarWidth = sidebar.offsetWidth;
-            const swipeThreshold = sidebarWidth * 0.4; // Umbral de deslizamiento
+            const swipeThreshold = sidebarWidth * 0.4;
 
-            // Limpia el transform en línea para que las clases de CSS tomen el control
             sidebar.style.transform = '';
 
-            // Si se deslizó más del umbral, cierra el menú
             if (currentTranslateX < -swipeThreshold) {
-                closeSidebar();
-                if (overlay) overlay.classList.remove('active');
-            } 
-            // Si no se deslizó lo suficiente, la clase .show sigue presente
-            // y el CSS lo animará de vuelta a translateX(0) automáticamente.
+                closeSidebar(); // Llama a la función centralizada
+            }
 
-            // Limpia las variables
             currentTranslateX = 0;
             startX = 0;
         });
