@@ -377,11 +377,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
-     * Oculta el menú lateral (sidebar).
-     * El overlay se oculta en un listener separado.
+     * Oculta el menú lateral (sidebar) y el overlay.
+     * Esta función centraliza la lógica de cierre.
      */
     const closeSidebar = () => {
         if (sidebar) sidebar.classList.remove('show');
+        if (overlay) overlay.classList.remove('active');
     };
 
     // Listener en la foto de perfil del encabezado para abrir el menú lateral.
@@ -398,54 +399,11 @@ document.addEventListener('DOMContentLoaded', () => {
         closeSidebar();   // Cierra el menú lateral.
     });
 
-    // --- LÓGICA DE DESLIZAMIENTO (SWIPE) PARA CERRAR SIDEBAR ---
-    let isDragging = false;
-    let startX = 0;
-    let currentTranslateX = 0;
-
-    if (sidebar) {
-        sidebar.addEventListener('touchstart', (e) => {
-            if (sidebar.classList.contains('show')) {
-                isDragging = true;
-                startX = e.touches[0].clientX;
-                // Desactiva la transición durante el arrastre para un seguimiento 1:1
-                sidebar.style.transition = 'none'; 
-            }
-        });
-
-        sidebar.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-
-            const currentX = e.touches[0].clientX;
-            const diffX = currentX - startX;
-
-            // Solo permite deslizar hacia la izquierda (para cerrar)
-            if (diffX < 0) {
-                currentTranslateX = diffX;
-                sidebar.style.transform = `translateX(${currentTranslateX}px)`;
-            }
-        });
-
-        sidebar.addEventListener('touchend', () => {
-            if (!isDragging) return;
-
-            isDragging = false;
-            // Reactiva la transición para la animación de cierre o retorno
-            sidebar.style.transition = 'transform 0.3s ease-in-out';
-
-            const sidebarWidth = sidebar.offsetWidth;
-            // Si se deslizó más del 40% hacia la izquierda, cierra el menú
-            if (currentTranslateX < - (sidebarWidth * 0.4)) {
-                closeSidebar();
-                if (overlay) overlay.classList.remove('active');
-            } else {
-                // Si no, vuelve a la posición abierta
-                sidebar.style.transform = 'translateX(0)';
-            }
-
-            // Limpia las variables
-            currentTranslateX = 0;
-            startX = 0;
+    // --- LÓGICA DE CIERRE DEL SIDEBAR AL CLICAR LA FOTO DE PERFIL ---
+    const sidebarProfileAvatar = document.querySelector('.sidebar .profile-avatar');
+    if (sidebarProfileAvatar) {
+        sidebarProfileAvatar.addEventListener('click', () => {
+            closeSidebar();
         });
     }
 
