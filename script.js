@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (themeToggleButton) {
         const themeIcon = themeToggleButton.querySelector('i');
+        const themeColorMeta = document.getElementById('theme-color-meta');
 
         /**
          * Aplica el tema visual (claro u oscuro) a la aplicación.
@@ -38,17 +39,37 @@ document.addEventListener('DOMContentLoaded', () => {
             if (theme === 'light') {
                 body.classList.add('light-mode');
                 if (themeIcon) themeIcon.classList.replace('bi-moon-stars', 'bi-sun-fill');
+                if (themeColorMeta) themeColorMeta.setAttribute('content', '#FFFFFF');
                 localStorage.setItem('theme', 'light');
             } else {
                 body.classList.remove('light-mode');
                 if (themeIcon) themeIcon.classList.replace('bi-sun-fill', 'bi-moon-stars');
+                if (themeColorMeta) themeColorMeta.setAttribute('content', '#15202B');
                 localStorage.setItem('theme', 'dark');
             }
         };
 
-        // Al cargar la página, obtiene el tema guardado en localStorage o usa 'light' por defecto.
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        applyTheme(savedTheme);
+        /**
+         * Determina el tema inicial a aplicar, respetando el siguiente orden de prioridad:
+         * 1. Preferencia guardada explícitamente por el usuario en localStorage.
+         * 2. Preferencia de color del sistema operativo del usuario (prefers-color-scheme).
+         * 3. Tema claro como opción por defecto.
+         * @returns {string} El tema a aplicar ('light' o 'dark').
+         */
+        const getInitialTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                return savedTheme; // Prioridad 1: Tema guardado
+            }
+            // Prioridad 2: Preferencia del sistema
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+            return 'light'; // Prioridad 3: Por defecto
+        };
+
+        // Aplica el tema inicial al cargar la página.
+        applyTheme(getInitialTheme());
 
         // Añade un listener al botón para alternar entre los temas cuando se hace clic.
         themeToggleButton.addEventListener('click', () => {
@@ -377,13 +398,64 @@ document.addEventListener('DOMContentLoaded', () => {
         closeSidebar();   // Cierra el menú lateral.
     });
 
+    // --- LÓGICA DE DESLIZAMIENTO (SWIPE) PARA CERRAR SIDEBAR ---
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslateX = 0;
+
+    if (sidebar) {
+        sidebar.addEventListener('touchstart', (e) => {
+            if (sidebar.classList.contains('show')) {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                // Desactiva la transición durante el arrastre para un seguimiento 1:1
+                sidebar.style.transition = 'none'; 
+            }
+        });
+
+        sidebar.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+
+            const currentX = e.touches[0].clientX;
+            const diffX = currentX - startX;
+
+            // Solo permite deslizar hacia la izquierda (para cerrar)
+            if (diffX < 0) {
+                currentTranslateX = diffX;
+                sidebar.style.transform = `translateX(${currentTranslateX}px)`;
+            }
+        });
+
+        sidebar.addEventListener('touchend', () => {
+            if (!isDragging) return;
+
+            isDragging = false;
+            // Reactiva la transición para la animación de cierre o retorno
+            sidebar.style.transition = 'transform 0.3s ease-in-out';
+
+            const sidebarWidth = sidebar.offsetWidth;
+            // Si se deslizó más del 40% hacia la izquierda, cierra el menú
+            if (currentTranslateX < - (sidebarWidth * 0.4)) {
+                closeSidebar();
+                if (overlay) overlay.classList.remove('active');
+            } else {
+                // Si no, vuelve a la posición abierta
+                sidebar.style.transform = 'translateX(0)';
+            }
+
+            // Limpia las variables
+            currentTranslateX = 0;
+            startX = 0;
+        });
+    }
+
     // --- LÓGICA DEL BOTÓN "POSTED" (DEMO-CONTAINER) ---
     const demoContainer = document.querySelector('.demo-container');
 
     if (demoContainer) {
         // Muestra u oculta el botón de "nuevos posts" según la posición del scroll.
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 800) {
+            if (window.scrollY > 3000) {
                 demoContainer.classList.add('visible');
             } else {
                 demoContainer.classList.remove('visible');
