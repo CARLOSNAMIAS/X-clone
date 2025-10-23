@@ -434,14 +434,18 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.style.transition = 'transform 0.3s ease-in-out';
 
             const sidebarWidth = sidebar.offsetWidth;
-            // Si se deslizó más del 40% hacia la izquierda, cierra el menú
-            if (currentTranslateX < - (sidebarWidth * 0.4)) {
+            const swipeThreshold = sidebarWidth * 0.4; // Umbral de deslizamiento
+
+            // Limpia el transform en línea para que las clases de CSS tomen el control
+            sidebar.style.transform = '';
+
+            // Si se deslizó más del umbral, cierra el menú
+            if (currentTranslateX < -swipeThreshold) {
                 closeSidebar();
                 if (overlay) overlay.classList.remove('active');
-            } else {
-                // Si no, vuelve a la posición abierta
-                sidebar.style.transform = 'translateX(0)';
-            }
+            } 
+            // Si no se deslizó lo suficiente, la clase .show sigue presente
+            // y el CSS lo animará de vuelta a translateX(0) automáticamente.
 
             // Limpia las variables
             currentTranslateX = 0;
