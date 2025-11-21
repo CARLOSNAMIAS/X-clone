@@ -21,7 +21,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #15202B;
+    background-color: #000000;
     color: #E7E9EA;
     overflow-x: hidden;
 }
@@ -75,7 +75,7 @@ body {
     left: 0;
     right: 0;
     height: 53px;
-    background-color: #15202Bee; /* El `ee` final indica opacidad */
+    background-color: #000000ee; /* El `ee` final indica opacidad */
     backdrop-filter: blur(12px); /* Efecto "vidrio esmerilado" */
     display: flex;
     align-items: center;
@@ -113,7 +113,7 @@ body {
     left: 0;
     right: 0;
     height: 53px;
-    background-color: #15202bc2;
+    background-color: #000000;
     backdrop-filter: blur(12px);
     display: flex;
     border-bottom: 1px solid #313a41;
@@ -172,7 +172,7 @@ body {
 }
 
 .tweet:hover {
-    background-color: #1C2732;
+    background-color: #1c273200;
 }
 
 .tweet-header {
@@ -265,7 +265,7 @@ body {
 }
 
 .action-btn:hover {
-    color: #1D9BF0;
+    color: #1d9cf000;
 }
 
 .action-btn.liked {
@@ -282,7 +282,7 @@ body {
     left: 0;
     right: 0;
     height: 53px;
-    background-color: #15202B;
+    background-color: #000000;
     border-top: 1px solid #38444D;
     display: flex;
     justify-content: space-around;

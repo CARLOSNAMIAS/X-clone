@@ -11,7 +11,7 @@
 
 /* --- Estilos Generales del Body (Contexto del Menú) --- */
 body {
-    background-color: #1c2732;
+    background-color: #000000;
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
@@ -22,7 +22,7 @@ body {
    =================================================================== */
 
 .sidebar {
-    background-color: #15202b;
+    background-color: #000000;
     height: 100%;
     width: 100%;
     max-width: 280px;

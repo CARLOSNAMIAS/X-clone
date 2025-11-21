@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 body.classList.remove('light-mode');
                 if (themeIcon) themeIcon.classList.replace('bi-sun-fill', 'bi-moon-stars');
-                if (themeColorMeta) themeColorMeta.setAttribute('content', '#15202B');
+                if (themeColorMeta) themeColorMeta.setAttribute('content', '#000000');
                 localStorage.setItem('theme', 'dark');
             }
         };
